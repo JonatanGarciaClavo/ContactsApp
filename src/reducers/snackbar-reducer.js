@@ -1,6 +1,6 @@
 import { CLOSE_ERROR_MESSAGE, SET_ERROR_MESSAGE } from '../constants/snackbar-actions-constants';
 
-const initialState = {
+export const initialState = {
   open: false,
   message: 'Unknown error',
 };

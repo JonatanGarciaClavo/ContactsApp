@@ -1,0 +1,20 @@
+exports[`test handles close snackbar action 1`] = `
+Object {
+  "message": "Unknown error",
+  "open": false,
+}
+`;
+
+exports[`test handles display error action 1`] = `
+Object {
+  "message": "Custom error",
+  "open": true,
+}
+`;
+
+exports[`test returns the same state on an unhandled action 1`] = `
+Object {
+  "message": "Unknown error",
+  "open": false,
+}
+`;

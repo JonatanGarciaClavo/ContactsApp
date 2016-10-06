@@ -2,7 +2,7 @@ import Firebase from 'firebase';
 import Promise from 'bluebird';
 import _ from 'lodash';
 
-const BASE_URL = 'change to firebase url';
+const BASE_URL = 'https://redux-contacts-app.firebaseio.com/jony';
 
 export default {
   list() {

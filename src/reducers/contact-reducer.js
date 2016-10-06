@@ -65,7 +65,7 @@ const rulesObject = {
   imgUrl: [{ rule: isUrl, error: 'Invalid url' }],
 };
 
-const initialState = {
+export const initialState = {
   loading: false,
   isModified: false,
   contact: {
@@ -95,16 +95,16 @@ const contact = (state = initialState, action) => {
       return Object.assign({}, state, { isModified: true,
         contact: Object.assign({}, state.contact, { [name]: value }) });
     case VALIDATE_CONTACT_ATTRIBUTE:
-      error = validateAll(_.pick(rulesObject, name), { [action.name]: value });
+      error = validateAll(_.pick(rulesObject, name), { [name]: value });
       if (error && error[name]) {
-        errors[name] = error[name];
+        errors = { ...errors, [name]: error[name] };
       } else {
-        delete errors[name];
+        errors = _.omit(errors, name);
       }
-      return Object.assign({}, state, { errors });
+      return Object.assign({}, state, { errors: Object.assign({}, errors) });
     case VALIDATE_CONTACT:
       errors = validateAll(rulesObject, state.contact);
-      return Object.assign({}, state, { errors });
+      return Object.assign({}, state, { errors: Object.assign({}, errors) });
     default:
       return state;
   }
