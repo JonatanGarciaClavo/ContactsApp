@@ -1,36 +1,38 @@
-import { LOADING_CONTACT_CARD, INITIALIZE_CONTACT_CARD }
-  from '../constants/contact-card-actions-constants';
+import { LOADING_CONTACT_CARD, INITIALIZE_CONTACT_CARD, REQUEST_CONTACT_CARD,
+  REQUEST_DELETE_CONTACT_CARD } from '../constants/contact-card-actions-constants';
 import { INITIALIZE_CONTACT } from '../constants/contact-actions-constants';
-import ContactsServices from '../services/contacts-services';
-import SnackbarActions from './snackbar-actions';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+import Promise from 'bluebird';
 
 export default {
-  initializeContactCard(params) {
+  requestContactCard(params) {
     return (dispatch, getState) => {
       const contact = getState().contactCard.contact;
       if (params.id === contact.id) {
         return Promise.resolve();
       }
-      dispatch({
-        type: LOADING_CONTACT_CARD,
+      return dispatch({
+        type: REQUEST_CONTACT_CARD,
+        id: params.id,
       });
-      return ContactsServices.get(params.id)
-        .then((contactDB) =>
-          dispatch({
-            type: INITIALIZE_CONTACT_CARD,
-            contact: contactDB,
-          })
-        )
-        .catch((err) => dispatch(SnackbarActions.displayError(err)));
     }
   },
+  loadingContactCard() {
+    return {
+      type: LOADING_CONTACT_CARD,
+    };
+  },
+  recieveContactCard(contact) {
+    return {
+      type: INITIALIZE_CONTACT_CARD,
+      contact,
+    };
+  },
   deleteContact(id) {
-    return (dispatch) =>
-      ContactsServices.delete(id).then((message) => {
-        browserHistory.push('/list');
-        return Promise.resolve(message);
-      }).catch((err) => dispatch(SnackbarActions.displayError(err)));
+    return {
+      type: REQUEST_DELETE_CONTACT_CARD,
+      id,
+    };
   },
   editContact(contact) {
     return (dispatch) => {

@@ -1,42 +1,32 @@
-import { LOADING_CONTACT_LIST, INITIALIZE_CONTACT_LIST, CHANGE_LIST_MODE }
-  from '../constants/contact-list-actions-constants';
+import { LOADING_CONTACT_LIST, INITIALIZE_CONTACT_LIST, CHANGE_LIST_MODE, REQUEST_CONTACT_LIST,
+  DELETE_CONTACT } from '../constants/contact-list-actions-constants';
 import { INITIALIZE_CONTACT_CARD } from '../constants/contact-card-actions-constants';
 import { INITIALIZE_CONTACT } from '../constants/contact-actions-constants';
-import ContactsServices from '../services/contacts-services';
-import SnackbarActions from './snackbar-actions';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+import Promise from 'bluebird';
 
 export default {
-  initializeContactList() {
-    return (dispatch) => {
-      dispatch({
-        type: LOADING_CONTACT_LIST,
-      });
-      return ContactsServices.list()
-        .then((contacts) => {
-          dispatch({
-            type: INITIALIZE_CONTACT_LIST,
-            contacts,
-          })
-          return Promise.resolve(contacts);
-        })
-        .catch((err) => dispatch(SnackbarActions.displayError(err)));
+  requestContactList() {
+    return {
+      type: REQUEST_CONTACT_LIST,
+    };
+  },
+  loadingContactList() {
+    return {
+      type: LOADING_CONTACT_LIST,
+    };
+  },
+  recieveContactList(contacts) {
+    return {
+      type: INITIALIZE_CONTACT_LIST,
+      contacts,
     }
   },
   deleteContact(id) {
-    return (dispatch) =>
-      ContactsServices.delete(id).then(() => {
-        dispatch({
-          type: LOADING_CONTACT_LIST,
-        });
-        return ContactsServices.list().then((contacts) =>
-          dispatch({
-            type: INITIALIZE_CONTACT_LIST,
-            contacts,
-          })
-        ).catch((err) => dispatch(SnackbarActions.displayError(err)));
-      })
-      .catch((err) => dispatch(SnackbarActions.displayError(err)))
+    return {
+      type: DELETE_CONTACT,
+      id,
+    };
   },
   editContact(contact) {
     return (dispatch) => {

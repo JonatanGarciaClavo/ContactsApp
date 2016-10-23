@@ -13,7 +13,7 @@ class ContactPage extends Component {
 
   componentDidMount() {
     const { actions, params } = this.props;
-    actions.initializeContactCard(params);
+    actions.requestContactCard(params);
   }
 
   onEditClick() {

@@ -1,0 +1,40 @@
+exports[`test should handle deleteContact action 1`] = `
+Array [
+  Object {
+    "id": "-1",
+    "type": "REQUEST_DELETE_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`test should handle loadingContactCard action 1`] = `
+Array [
+  Object {
+    "type": "LOADING_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`test should handle recieveContactCard action 1`] = `
+Array [
+  Object {
+    "contact": Object {
+      "email": "react@facebook.com",
+      "id": "-KG83Vl4C0o_mOYhZHyE",
+      "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/React.js_logo.svg/2000px-React.js_logo.svg.png",
+      "name": "React",
+      "phoneNumber": "",
+    },
+    "type": "INITIALIZE_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`test should handle requestContactCard action 1`] = `
+Array [
+  Object {
+    "id": -1,
+    "type": "REQUEST_CONTACT_CARD",
+  },
+]
+`;

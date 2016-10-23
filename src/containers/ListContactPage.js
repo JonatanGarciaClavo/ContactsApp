@@ -18,7 +18,7 @@ class ListContactPage extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.initializeContactList();
+    this.props.actions.requestContactList();
   }
 
   onContactClick(contact) {

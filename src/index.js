@@ -7,6 +7,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { App, CreateOrEditContactPage, ListContactPage, ContactPage } from './containers';
 import { About } from './components';
+import rootSaga from './sagas/index';
 
 import configureStore from './store/configureStore';
 
@@ -14,6 +15,7 @@ import './index.css';
 
 injectTapEventPlugin();
 const store = configureStore();
+store.runSaga(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>

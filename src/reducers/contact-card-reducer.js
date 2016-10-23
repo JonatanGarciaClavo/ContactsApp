@@ -1,7 +1,7 @@
 import { LOADING_CONTACT_CARD, INITIALIZE_CONTACT_CARD }
   from '../constants/contact-card-actions-constants';
 
-const initialState = {
+export const initialState = {
   loading: false,
   contact: {},
 };

@@ -1,0 +1,19 @@
+exports[`test should handle onContactAttributeBlur action 1`] = `
+Array [
+  Object {
+    "name": "email",
+    "type": "VALIDATE_CONTACT_ATTRIBUTE",
+    "value": "new@email.com",
+  },
+]
+`;
+
+exports[`test should handle onContactAttributeChange action 1`] = `
+Array [
+  Object {
+    "name": "email",
+    "type": "UPDATE_CONTACT_ATTRIBUTE",
+    "value": "new@email.com",
+  },
+]
+`;

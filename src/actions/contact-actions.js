@@ -3,6 +3,7 @@ VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE } from '../constants/contact-action
 import ContactsServices from '../services/contacts-services';
 import SnackbarActions from './snackbar-actions';
 import _ from 'lodash';
+import Promise from 'bluebird';
 
 const initializeContact = (contact) => ({
   type: INITIALIZE_CONTACT,
@@ -48,17 +49,17 @@ export default {
     }
   },
   onContactAttributeChange(name, value) {
-    return (dispatch) => dispatch({
+    return {
       type: UPDATE_CONTACT_ATTRIBUTE,
       name,
       value,
-    })
+    };
   },
   onContactAttributeBlur(name, value) {
-    return dispatch => dispatch({
+    return {
       type: VALIDATE_CONTACT_ATTRIBUTE,
       name,
       value,
-    })
+    };
   },
 }

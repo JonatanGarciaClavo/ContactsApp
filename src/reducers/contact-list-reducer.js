@@ -2,7 +2,7 @@ import { LOADING_CONTACT_LIST, INITIALIZE_CONTACT_LIST, CHANGE_LIST_MODE }
   from '../constants/contact-list-actions-constants';
 import { LIST_MODE } from '../constants/contact-list-mode-constants';
 
-const initialState = {
+export const initialState = {
   loading: false,
   contacts: [],
   orderBy: 'name',
