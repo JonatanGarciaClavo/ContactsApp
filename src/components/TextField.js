@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import TextFieldMUI from 'material-ui/lib/text-field';
+import _ from 'lodash';
 
 class TextField extends React.Component {
 
@@ -7,12 +8,18 @@ class TextField extends React.Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.state = {
+      value: props.value,
+    };
+    this.cbOnChange = _.debounce(props.onChange, 250);
   }
 
   onChange(e) {
     const { name, onChange } = this.props;
+    const value = e.target.value;
+    this.setState({ value });
     if (onChange) {
-      onChange(name, e.target.value);
+      this.cbOnChange(name, value);
     }
   }
 
@@ -24,10 +31,10 @@ class TextField extends React.Component {
   }
 
   render() {
-    const { value, label, name, placeholder, type, errorText, onEnterKeyDown } = this.props;
+    const { label, name, placeholder, type, errorText, onEnterKeyDown } = this.props;
     return (
       <TextFieldMUI
-        value={value}
+        value={this.state.value}
         floatingLabelText={label || name}
         hintText={placeholder}
         type={type || 'text'}
