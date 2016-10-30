@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router'
 import ContactActions from '../actions/contact-actions';
-import SnackbarActions from '../actions/snackbar-actions';
 import ContactForm from '../components/ContactForm';
 
 class CreateOrEditContactPage extends Component {
@@ -26,12 +24,8 @@ class CreateOrEditContactPage extends Component {
     actions.initializeCreateOrEditContact(params);
   }
   onContactSave() {
-    const { actions, displayError } = this.props;
-    actions.saveContact()
-      .then(() => {
-        browserHistory.push('/list');
-      })
-      .catch(err => displayError(err));
+    const { actions } = this.props;
+    actions.saveContact();
   }
   render() {
     const { contact, actions } = this.props;
@@ -50,7 +44,6 @@ CreateOrEditContactPage.propTypes = {
   contact: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   params: PropTypes.object,
-  displayError: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (store) => ({
@@ -59,7 +52,6 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(ContactActions, dispatch),
-  displayError: bindActionCreators(SnackbarActions, dispatch).displayError,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateOrEditContactPage);

@@ -14,9 +14,9 @@ export default {
     } else if (_.isString(error)) {
       message = error;
     }
-    return dispatch => dispatch({
+    return {
       type: SET_ERROR_MESSAGE,
       message,
-    });
+    };
   },
 };

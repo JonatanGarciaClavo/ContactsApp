@@ -1,3 +1,32 @@
+exports[`test should handle initializeCreateOrEditContact action 1`] = `
+Array [
+  Object {
+    "type": "LOADING_CONTACT",
+  },
+  Object {
+    "contact": undefined,
+    "type": "INITIALIZE_CONTACT",
+  },
+]
+`;
+
+exports[`test should handle initializeCreateOrEditContact action 2`] = `
+Array [
+  Object {
+    "id": "1",
+    "type": "REQUEST_CONTACT",
+  },
+]
+`;
+
+exports[`test should handle loadingContact action 1`] = `
+Array [
+  Object {
+    "type": "LOADING_CONTACT",
+  },
+]
+`;
+
 exports[`test should handle onContactAttributeBlur action 1`] = `
 Array [
   Object {
@@ -14,6 +43,38 @@ Array [
     "name": "email",
     "type": "UPDATE_CONTACT_ATTRIBUTE",
     "value": "new@email.com",
+  },
+]
+`;
+
+exports[`test should handle recieveContact action 1`] = `
+Array [
+  Object {
+    "contact": Object {
+      "email": "test@test.es",
+      "imgUrl": "",
+      "name": "test",
+      "phoneNumber": "123123123",
+    },
+    "type": "INITIALIZE_CONTACT",
+  },
+]
+`;
+
+exports[`test should handle saveContact with errors action 1`] = `
+Array [
+  Object {
+    "type": "VALIDATE_CONTACT",
+  },
+  Object {
+    "contact": Object {
+      "email": "",
+      "imgUrl": "",
+      "name": "",
+      "phoneNumber": "",
+    },
+    "errors": Object {},
+    "type": "REQUEST_SAVE_CONTACT",
   },
 ]
 `;

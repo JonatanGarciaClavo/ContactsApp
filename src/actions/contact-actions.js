@@ -1,8 +1,6 @@
-import { LOADING_CONTACT, INITIALIZE_CONTACT, UPDATE_CONTACT_ATTRIBUTE,
-VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE } from '../constants/contact-actions-constants';
-import ContactsServices from '../services/contacts-services';
-import SnackbarActions from './snackbar-actions';
-import _ from 'lodash';
+import { LOADING_CONTACT, INITIALIZE_CONTACT, UPDATE_CONTACT_ATTRIBUTE, REQUEST_CONTACT,
+  VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE, REQUEST_SAVE_CONTACT,
+  } from '../constants/contact-actions-constants';
 import Promise from 'bluebird';
 
 const initializeContact = (contact) => ({
@@ -11,20 +9,21 @@ const initializeContact = (contact) => ({
 });
 
 export default {
+  loadingContact() {
+    return {
+      type: LOADING_CONTACT,
+    };
+  },
+  recieveContact(contact) {
+    return initializeContact(contact);
+  },
   initializeCreateOrEditContact(params) {
     return (dispatch, getState) => {
       const contact = getState().contact.contact;
       if (params.id && params.id === contact.id) {
         return Promise.resolve();
       } else if (params.id) {
-        dispatch({ type: LOADING_CONTACT });
-        return ContactsServices.get(params.id)
-          .then((contactDB) =>
-            dispatch(initializeContact(contactDB))
-          )
-          .catch((err) =>
-            dispatch(SnackbarActions.displayError(err))
-          );
+        return dispatch({ type: REQUEST_CONTACT, id: params.id });
       }
       dispatch({ type: LOADING_CONTACT });
       return dispatch(initializeContact());
@@ -34,18 +33,8 @@ export default {
     return (dispatch, getState) => {
       dispatch({ type: VALIDATE_CONTACT });
       const errors = getState().contact.errors;
-      if (_.isEmpty(errors)) {
-        const contact = getState().contact.contact;
-        if (contact.id) {
-          return ContactsServices.update(contact)
-            .then(result => result)
-            .catch(err => Promise.reject(err));
-        }
-        return ContactsServices.create(contact)
-          .then(result => result)
-          .catch(err => Promise.reject(err));
-      }
-      return Promise.reject('Contact has errors');
+      const contact = getState().contact.contact;
+      return dispatch({ type: REQUEST_SAVE_CONTACT, errors, contact });
     }
   },
   onContactAttributeChange(name, value) {

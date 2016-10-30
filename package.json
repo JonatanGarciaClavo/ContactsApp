@@ -11,7 +11,8 @@
     "dev-win": "SET NODE_ENV=development&&babel-node server.js",
     "build-win": "rimraf dist && SET NODE_ENV=production&& webpack --config ./webpack.production.config.js --progress --profile --colors",
     "start-win": "SET NODE_ENV=production&&SET PORT=80&&babel-node server.js",
-    "test": "jest"
+    "test": "jest",
+    "test-coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -71,6 +72,7 @@
     "raw-loader": "^0.5.1",
     "react-test-renderer": "^15.3.2",
     "redux-mock-store": "^1.2.1",
+    "redux-saga-testing": "^0.1.1",
     "rimraf": "^2.5.2",
     "stats-webpack-plugin": "^0.3.1",
     "style-loader": "^0.13.1",
