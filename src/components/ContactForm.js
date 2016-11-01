@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { RaisedButton } from 'material-ui';
 import TextField from './TextField';
-import _ from 'lodash';
 
 const styles = {
   formContainer: {

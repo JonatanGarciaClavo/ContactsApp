@@ -1,0 +1,27 @@
+exports[`Test snackbar reducer handles close snackbar action 1`] = `
+Object {
+  "message": "Unknown error",
+  "open": false,
+}
+`;
+
+exports[`Test snackbar reducer handles display error action 1`] = `
+Object {
+  "message": "Custom error",
+  "open": true,
+}
+`;
+
+exports[`Test snackbar reducer returns the initialState state on an undefined state 1`] = `
+Object {
+  "message": "Unknown error",
+  "open": false,
+}
+`;
+
+exports[`Test snackbar reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "message": "Unknown error",
+  "open": false,
+}
+`;

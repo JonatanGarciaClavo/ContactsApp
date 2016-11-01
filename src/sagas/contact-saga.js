@@ -1,5 +1,5 @@
 import { take, call, put } from 'redux-saga/effects';
-import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT }
+import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, INITILIZE_CONTACT_FROM_OTHER_VIEW }
   from '../constants/contact-actions-constants';
 import ContactActions from '../actions/contact-actions';
 import SnackbarActions from '../actions/snackbar-actions';
@@ -43,5 +43,18 @@ export function* requestSaveContact() {
   while (true) {
     const { errors, contact } = yield take(REQUEST_SAVE_CONTACT);
     yield call(saveContact, errors, contact);
+  }
+}
+
+export function* initilizeContactFromOtherView(contact) {
+  yield put(ContactActions.recieveContact(contact));
+  yield call(browserHistory.push, `/edit/${contact.id}`);
+}
+
+
+export function* requestInitilizeContactFromOtherView() {
+  while (true) {
+    const { contact } = yield take(INITILIZE_CONTACT_FROM_OTHER_VIEW);
+    yield call(initilizeContactFromOtherView, contact);
   }
 }

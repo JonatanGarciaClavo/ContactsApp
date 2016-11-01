@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import TextFieldMUI from 'material-ui/lib/text-field';
+import TextFieldMUI from 'material-ui/TextField';
 import _ from 'lodash';
 
 class TextField extends React.Component {

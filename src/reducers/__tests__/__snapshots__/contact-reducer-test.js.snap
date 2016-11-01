@@ -1,4 +1,4 @@
-exports[`test handles INITIALIZE_CONTACT action 1`] = `
+exports[`Test contact reducer handles INITIALIZE_CONTACT action 1`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
@@ -12,7 +12,7 @@ Object {
 }
 `;
 
-exports[`test handles LOADING_CONTACT action 1`] = `
+exports[`Test contact reducer handles LOADING_CONTACT action 1`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -26,7 +26,7 @@ Object {
 }
 `;
 
-exports[`test handles UPDATE_CONTACT_ATTRIBUTE action 1`] = `
+exports[`Test contact reducer handles UPDATE_CONTACT_ATTRIBUTE action 1`] = `
 Object {
   "contact": Object {
     "email": "test2@test.com",
@@ -40,7 +40,7 @@ Object {
 }
 `;
 
-exports[`test handles UPDATE_CONTACT_ATTRIBUTE action 2`] = `
+exports[`Test contact reducer handles UPDATE_CONTACT_ATTRIBUTE action 2`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
@@ -54,7 +54,7 @@ Object {
 }
 `;
 
-exports[`test handles UPDATE_CONTACT_ATTRIBUTE action 3`] = `
+exports[`Test contact reducer handles UPDATE_CONTACT_ATTRIBUTE action 3`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
@@ -68,7 +68,7 @@ Object {
 }
 `;
 
-exports[`test handles UPDATE_CONTACT_ATTRIBUTE action 4`] = `
+exports[`Test contact reducer handles UPDATE_CONTACT_ATTRIBUTE action 4`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
@@ -82,7 +82,7 @@ Object {
 }
 `;
 
-exports[`test handles VALIDATE_CONTACT success action 1`] = `
+exports[`Test contact reducer handles VALIDATE_CONTACT success action 1`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -99,7 +99,7 @@ Object {
 }
 `;
 
-exports[`test handles VALIDATE_CONTACT_ATTRIBUTE email action 1`] = `
+exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE email action 1`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -113,7 +113,7 @@ Object {
 }
 `;
 
-exports[`test handles VALIDATE_CONTACT_ATTRIBUTE email action 2`] = `
+exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE email action 2`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -129,7 +129,7 @@ Object {
 }
 `;
 
-exports[`test handles VALIDATE_CONTACT_ATTRIBUTE email action 3`] = `
+exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE email action 3`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -145,7 +145,7 @@ Object {
 }
 `;
 
-exports[`test handles VALIDATE_CONTACT_ATTRIBUTE imgUrl action 1`] = `
+exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE imgUrl action 1`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -159,7 +159,7 @@ Object {
 }
 `;
 
-exports[`test handles VALIDATE_CONTACT_ATTRIBUTE imgUrl action 2`] = `
+exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE imgUrl action 2`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -175,7 +175,7 @@ Object {
 }
 `;
 
-exports[`test handles VALIDATE_CONTACT_ATTRIBUTE name action 1`] = `
+exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE name action 1`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -189,7 +189,7 @@ Object {
 }
 `;
 
-exports[`test handles VALIDATE_CONTACT_ATTRIBUTE name action 2`] = `
+exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE name action 2`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -205,7 +205,21 @@ Object {
 }
 `;
 
-exports[`test returns the same state on an unhandled action 1`] = `
+exports[`Test contact reducer returns the initialState state on an undefined state 1`] = `
+Object {
+  "contact": Object {
+    "email": "",
+    "imgUrl": "",
+    "name": "",
+    "phoneNumber": "",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": false,
+}
+`;
+
+exports[`Test contact reducer returns the same state on an unhandled action 1`] = `
 Object {
   "contact": Object {
     "email": "",

@@ -1,4 +1,4 @@
-exports[`test should handle changeListMode action 1`] = `
+exports[`test should handle changeListMode action CARD_MODE 1`] = `
 Array [
   Object {
     "mode": "card",
@@ -7,11 +7,35 @@ Array [
 ]
 `;
 
+exports[`test should handle changeListMode action LIST_MODE 1`] = `Array []`;
+
 exports[`test should handle deleteContact action 1`] = `
 Array [
   Object {
     "id": "-1",
     "type": "DELETE_CONTACT",
+  },
+]
+`;
+
+exports[`test should handle editContact action 1`] = `
+Array [
+  Object {
+    "contact": Object {
+      "id": "-1",
+    },
+    "type": "INITILIZE_CONTACT_FROM_OTHER_VIEW",
+  },
+]
+`;
+
+exports[`test should handle loadContactCard action 1`] = `
+Array [
+  Object {
+    "contact": Object {
+      "id": "-1",
+    },
+    "type": "INITILIZE_CONTACT_CARD_FROM_OTHER_VIEW",
   },
 ]
 `;

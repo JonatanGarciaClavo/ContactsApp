@@ -1,4 +1,4 @@
-import { take, fork, call, put } from 'redux-saga/effects';
+import { take, call, put } from 'redux-saga/effects';
 import { REQUEST_CONTACT_LIST, DELETE_CONTACT }
   from '../constants/contact-list-actions-constants';
 import ContactListActions from '../actions/contact-list-actions';
@@ -38,8 +38,3 @@ export function* requestDeleteContact() {
     yield call(fetchDeleteContact, id);
   }
 }
-
-export default function* root() {
-  yield fork(requestContactList)
-  yield fork(requestDeleteContact)
-};

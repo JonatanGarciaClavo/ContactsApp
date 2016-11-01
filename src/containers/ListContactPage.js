@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { List, ListItem, Avatar, LinearProgress, Divider } from 'material-ui';
-import DeleteIcon from 'material-ui/lib/svg-icons/action/delete';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ContactListActions from '../actions/contact-list-actions';

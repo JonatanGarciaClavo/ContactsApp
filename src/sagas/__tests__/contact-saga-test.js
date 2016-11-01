@@ -1,6 +1,10 @@
 import sagaHelper from 'redux-saga-testing';
-import { call, put } from 'redux-saga/effects';
-import { saveContact, fetchContact } from '../contact-saga';
+import { take, call, put } from 'redux-saga/effects';
+import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, INITILIZE_CONTACT_FROM_OTHER_VIEW }
+  from '../../constants/contact-actions-constants';
+import { requestSaveContact, saveContact, requestContact, fetchContact,
+  requestInitilizeContactFromOtherView, initilizeContactFromOtherView,
+  } from '../contact-saga';
 import ContactActions from '../../actions/contact-actions';
 import SnackbarActions from '../../actions/snackbar-actions';
 import ContactsServices from '../../services/contacts-services';
@@ -18,7 +22,18 @@ const contact = {
 
 const serverError = new Error('Error from server');
 
-describe('Testing requesContact', () => {
+describe('Testing requestContact', () => {
+  const it = sagaHelper(requestContact());
+  it('intercept request contact', result => {
+    expect(result).toEqual(take(REQUEST_CONTACT));
+    return { id };
+  });
+  it('call fetchContact', result => {
+    expect(result).toEqual(call(fetchContact, id));
+  });
+});
+
+describe('Testing fetchContact', () => {
   describe('Success flow', () => {
     const it = sagaHelper(fetchContact(id));
     it('should trigger and loading action', result => {
@@ -59,8 +74,18 @@ describe('Testing requesContact', () => {
   });
 });
 
+describe('Testing requestSaveContact', () => {
+  const it = sagaHelper(requestSaveContact());
+  it('intercept request save contact', result => {
+    expect(result).toEqual(take(REQUEST_SAVE_CONTACT));
+    return { errors: {}, contact };
+  });
+  it('call saveContact', result => {
+    expect(result).toEqual(call(saveContact, {}, contact));
+  });
+});
 
-describe('Testing requesContact', () => {
+describe('Testing saveContact', () => {
   describe('Success update flow', () => {
     const it = sagaHelper(saveContact({}, contact));
     it('should trigger and loading action', result => {
@@ -129,3 +154,24 @@ describe('Testing requesContact', () => {
     });
   });
 });
+describe('Testing requestInitilizeContactFromOtherView', () => {
+  const it = sagaHelper(requestInitilizeContactFromOtherView());
+  it('intercept request contact', result => {
+    expect(result).toEqual(take(INITILIZE_CONTACT_FROM_OTHER_VIEW));
+    return { contact };
+  });
+  it('call initilizeContactFromOtherView', result => {
+    expect(result).toEqual(call(initilizeContactFromOtherView, contact));
+  });
+});
+
+describe('Testing initilizeContactFromOtherView', () => {
+  const it = sagaHelper(initilizeContactFromOtherView(contact));
+  it('initialize contact info before redirect', result => {
+    expect(result).toEqual(put(ContactActions.recieveContact(contact)));
+  });
+  it('call browserHistory push to redirect to edit user pathname', result => {
+    expect(result).toEqual(call(browserHistory.push, `/edit/${contact.id}`));
+  });
+});
+

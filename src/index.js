@@ -24,8 +24,8 @@ ReactDOM.render(
         <IndexRoute component={About} />
         <Route path="/add" component={CreateOrEditContactPage} />
         <Route path="/list" component={ListContactPage} />
-        <Route path="edit/:id" component={CreateOrEditContactPage} />
-        <Route path="contact/:id" component={ContactPage} />
+        <Route path="/edit/:id" component={CreateOrEditContactPage} />
+        <Route path="/card/:id" component={ContactPage} />
       </Route>
     </Router>
   </Provider>,

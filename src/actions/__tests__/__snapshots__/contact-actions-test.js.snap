@@ -1,4 +1,4 @@
-exports[`test should handle initializeCreateOrEditContact action 1`] = `
+exports[`Test contact actions should handle initializeCreateOrEditContact action with empty params 1`] = `
 Array [
   Object {
     "type": "LOADING_CONTACT",
@@ -10,7 +10,7 @@ Array [
 ]
 `;
 
-exports[`test should handle initializeCreateOrEditContact action 2`] = `
+exports[`Test contact actions should handle initializeCreateOrEditContact action with id params 1`] = `
 Array [
   Object {
     "id": "1",
@@ -19,7 +19,9 @@ Array [
 ]
 `;
 
-exports[`test should handle loadingContact action 1`] = `
+exports[`Test contact actions should handle initializeCreateOrEditContact action with id params already in store 1`] = `Array []`;
+
+exports[`Test contact actions should handle loadingContact action 1`] = `
 Array [
   Object {
     "type": "LOADING_CONTACT",
@@ -27,7 +29,7 @@ Array [
 ]
 `;
 
-exports[`test should handle onContactAttributeBlur action 1`] = `
+exports[`Test contact actions should handle onContactAttributeBlur action 1`] = `
 Array [
   Object {
     "name": "email",
@@ -37,7 +39,7 @@ Array [
 ]
 `;
 
-exports[`test should handle onContactAttributeChange action 1`] = `
+exports[`Test contact actions should handle onContactAttributeChange action 1`] = `
 Array [
   Object {
     "name": "email",
@@ -47,7 +49,7 @@ Array [
 ]
 `;
 
-exports[`test should handle recieveContact action 1`] = `
+exports[`Test contact actions should handle recieveContact action 1`] = `
 Array [
   Object {
     "contact": Object {
@@ -61,7 +63,7 @@ Array [
 ]
 `;
 
-exports[`test should handle saveContact with errors action 1`] = `
+exports[`Test contact actions should handle saveContact with errors action 1`] = `
 Array [
   Object {
     "type": "VALIDATE_CONTACT",

@@ -1,0 +1,49 @@
+exports[`Test contact card reducer handles INITIALIZE_CONTACT action 1`] = `
+Object {
+  "contact": Object {
+    "email": "test@test.com",
+    "id": "-1",
+    "imgUrl": "http://www.test.image.com",
+    "name": "Tester",
+    "phoneNumber": "666666666",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": false,
+}
+`;
+
+exports[`Test contact card reducer handles LOADING_CONTACT action 1`] = `
+Object {
+  "contact": Object {
+    "email": "",
+    "imgUrl": "",
+    "name": "",
+    "phoneNumber": "",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": true,
+}
+`;
+
+exports[`Test contact card reducer returns the initialState state on an undefined state 1`] = `
+Object {
+  "contact": Object {},
+  "loading": false,
+}
+`;
+
+exports[`Test contact card reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "contact": Object {
+    "email": "",
+    "imgUrl": "",
+    "name": "",
+    "phoneNumber": "",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": false,
+}
+`;

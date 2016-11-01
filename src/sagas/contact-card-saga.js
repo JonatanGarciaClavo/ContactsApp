@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
-import { REQUEST_CONTACT_CARD, REQUEST_DELETE_CONTACT_CARD }
-  from '../constants/contact-card-actions-constants';
+import { REQUEST_CONTACT_CARD, REQUEST_DELETE_CONTACT_CARD, INITILIZE_CONTACT_CARD_FROM_OTHER_VIEW,
+  } from '../constants/contact-card-actions-constants';
 import ContactCardActions from '../actions/contact-card-actions';
 import SnackbarActions from '../actions/snackbar-actions';
 import ContactsServices from '../services/contacts-services';
@@ -37,5 +37,18 @@ export function* requestDeleteContactCard() {
   while (true) {
     const { id } = yield take(REQUEST_DELETE_CONTACT_CARD);
     yield call(fetchDeleteContactCard, id);
+  }
+}
+
+export function* initilizeContactCardFromOtherView(contact) {
+  yield put(ContactCardActions.recieveContactCard(contact));
+  yield call(browserHistory.push, `/card/${contact.id}`);
+}
+
+
+export function* requestInitilizeContactCardFromOtherView() {
+  while (true) {
+    const { contact } = yield take(INITILIZE_CONTACT_CARD_FROM_OTHER_VIEW);
+    yield call(initilizeContactCardFromOtherView, contact);
   }
 }

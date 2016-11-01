@@ -1,7 +1,6 @@
 import { LOADING_CONTACT_CARD, INITIALIZE_CONTACT_CARD, REQUEST_CONTACT_CARD,
   REQUEST_DELETE_CONTACT_CARD } from '../constants/contact-card-actions-constants';
-import { INITIALIZE_CONTACT } from '../constants/contact-actions-constants';
-import { browserHistory } from 'react-router';
+import { INITILIZE_CONTACT_FROM_OTHER_VIEW } from '../constants/contact-actions-constants';
 import Promise from 'bluebird';
 
 export default {
@@ -35,13 +34,9 @@ export default {
     };
   },
   editContact(contact) {
-    return (dispatch) => {
-      dispatch({
-        type: INITIALIZE_CONTACT,
-        contact,
-      });
-      browserHistory.push(`/edit/${contact.id}`);
-      return Promise.resolve();
+    return {
+      type: INITILIZE_CONTACT_FROM_OTHER_VIEW,
+      contact,
     };
   },
 }
