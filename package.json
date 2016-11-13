@@ -1,6 +1,6 @@
 {
   "name": "Contacts-App",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "description": "Contacts App",
   "scripts": {
     "dev": "babel-node server.js",
@@ -11,7 +11,8 @@
     "dev-win": "SET NODE_ENV=development&&babel-node server.js",
     "build-win": "rimraf dist && SET NODE_ENV=production&& webpack --config ./webpack.production.config.js --progress --profile --colors",
     "start-win": "SET NODE_ENV=production&&SET PORT=80&&babel-node server.js",
-    "test": "jest"
+    "test": "jest",
+    "test-coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,7 @@
     "firebase": "^2.4.2",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.11.1",
-    "material-ui": "^0.14.4",
+    "material-ui": "^0.16.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.5",
@@ -45,6 +46,7 @@
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.4.0",
     "redux-logger": "^2.6.1",
+    "redux-saga": "^0.12.0",
     "redux-thunk": "^2.0.1"
   },
   "devDependencies": {
@@ -69,6 +71,8 @@
     "jest": "^16.0.1",
     "raw-loader": "^0.5.1",
     "react-test-renderer": "^15.3.2",
+    "redux-mock-store": "^1.2.1",
+    "redux-saga-testing": "^0.1.1",
     "rimraf": "^2.5.2",
     "stats-webpack-plugin": "^0.3.1",
     "style-loader": "^0.13.1",

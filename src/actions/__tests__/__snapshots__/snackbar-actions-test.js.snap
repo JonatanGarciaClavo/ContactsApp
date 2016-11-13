@@ -1,0 +1,34 @@
+exports[`Test snackbar actions should handle closeSnackbar action 1`] = `
+Array [
+  Object {
+    "type": "CLOSE_ERROR_MESSAGE",
+  },
+]
+`;
+
+exports[`Test snackbar actions should handle displayError js Error 1`] = `
+Array [
+  Object {
+    "message": "Test error",
+    "type": "SET_ERROR_MESSAGE",
+  },
+]
+`;
+
+exports[`Test snackbar actions should handle displayError no error action param action 1`] = `
+Array [
+  Object {
+    "message": "Unknown error",
+    "type": "SET_ERROR_MESSAGE",
+  },
+]
+`;
+
+exports[`Test snackbar actions should handle displayError string error 1`] = `
+Array [
+  Object {
+    "message": "Test string error",
+    "type": "SET_ERROR_MESSAGE",
+  },
+]
+`;

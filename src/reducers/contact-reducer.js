@@ -1,5 +1,7 @@
-import { LOADING_CONTACT, INITIALIZE_CONTACT, UPDATE_CONTACT_ATTRIBUTE,
-VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE } from '../constants/contact-actions-constants';
+import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, REQUEST_CONTACT_SUCCESS, UPDATE_CONTACT_ATTRIBUTE,
+  VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE, RESET_CONTACT,
+  } from '../constants/contact-actions-constants';
+import { SET_ERROR_MESSAGE } from '../constants/snackbar-actions-constants';
 import _ from 'lodash';
 
 const requiredValidation =
@@ -82,18 +84,29 @@ const contact = (state = initialState, action) => {
   let error;
   let errors = state.errors;
   switch (action.type) {
-    case (LOADING_CONTACT):
-      return Object.assign({}, state, { loading: true });
-    case (INITIALIZE_CONTACT):
-      return Object.assign({}, state, { contact: action.contact || {
-        imgUrl: '',
-        name: '',
-        phoneNumber: '',
-        email: '',
-      }, loading: false, errors: {} });
+    case (REQUEST_SAVE_CONTACT):
+    case (REQUEST_CONTACT):
+      return { ...state, loading: true };
+    case (SET_ERROR_MESSAGE):
+      return { ...state, loading: false };
+    case (REQUEST_CONTACT_SUCCESS):
+      return {
+        ...state,
+        contact: action.contact || {
+          imgUrl: '',
+          name: '',
+          phoneNumber: '',
+          email: '',
+        },
+        loading: false,
+        errors: {},
+      };
     case (UPDATE_CONTACT_ATTRIBUTE):
-      return Object.assign({}, state, { isModified: true,
-        contact: Object.assign({}, state.contact, { [name]: value }) });
+      return {
+        ...state,
+        isModified: true,
+        contact: { ...state.contact, [name]: value },
+      };
     case VALIDATE_CONTACT_ATTRIBUTE:
       error = validateAll(_.pick(rulesObject, name), { [name]: value });
       if (error && error[name]) {
@@ -101,10 +114,12 @@ const contact = (state = initialState, action) => {
       } else {
         errors = _.omit(errors, name);
       }
-      return Object.assign({}, state, { errors: Object.assign({}, errors) });
+      return { ...state, errors };
     case VALIDATE_CONTACT:
       errors = validateAll(rulesObject, state.contact);
-      return Object.assign({}, state, { errors: Object.assign({}, errors) });
+      return { ...state, errors: { ...errors } };
+    case RESET_CONTACT:
+      return { ...initialState };
     default:
       return state;
   }

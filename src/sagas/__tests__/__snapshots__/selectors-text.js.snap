@@ -1,0 +1,5 @@
+exports[`Test selectors returns contact card state 1`] = `undefined`;
+
+exports[`Test selectors returns contact list state 1`] = `undefined`;
+
+exports[`Test selectors returns contact state 1`] = `undefined`;

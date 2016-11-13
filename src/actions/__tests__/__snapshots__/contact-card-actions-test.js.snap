@@ -1,0 +1,60 @@
+exports[`Test contact card actions should handle deleteContact action 1`] = `
+Array [
+  Object {
+    "id": "-1",
+    "type": "REQUEST_DELETE_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`Test contact card actions should handle initialize action 1`] = `
+Array [
+  Object {
+    "type": "RESET_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`Test contact card actions should handle loadData action when contanct it is not stored 1`] = `
+Array [
+  Object {
+    "id": -1,
+    "type": "REQUEST_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`Test contact card actions should handle loadData action when contanct it is stored 1`] = `
+Array [
+  Object {
+    "id": "-1",
+    "type": "REQUEST_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`Test contact card actions should handle recieveContactCard action 1`] = `
+Array [
+  Object {
+    "contact": Object {
+      "email": "react@facebook.com",
+      "id": "-KG83Vl4C0o_mOYhZHyE",
+      "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/React.js_logo.svg/2000px-React.js_logo.svg.png",
+      "name": "React",
+      "phoneNumber": "",
+    },
+    "type": "REQUEST_CONTACT_CARD_SUCCESS",
+  },
+]
+`;
+
+exports[`Test contact card actions should handle transtionToEditContact action 1`] = `
+Array [
+  Object {
+    "contact": Object {
+      "id": "-1",
+    },
+    "type": "TRANSTION_TO_EDIT_CONTACT",
+  },
+]
+`;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconMenu, MenuItem, IconButton } from 'material-ui';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { LIST_MODE, CARD_MODE } from '../constants/contact-list-mode-constants';
 
 const IconElementList = ({ changeListMode }) => (

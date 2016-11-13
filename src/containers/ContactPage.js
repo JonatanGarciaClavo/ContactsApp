@@ -9,16 +9,17 @@ class ContactPage extends Component {
     super(props);
     this.onEditClick = this.onEditClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    props.actions.initialize();
   }
 
   componentDidMount() {
     const { actions, params } = this.props;
-    actions.initializeContactCard(params);
+    actions.loadData(params);
   }
 
   onEditClick() {
-    const { actions: { editContact }, contactCard: { contact } } = this.props;
-    editContact(contact);
+    const { actions: { transtionToEditContact }, contactCard: { contact } } = this.props;
+    transtionToEditContact(contact);
   }
 
   onDeleteClick() {

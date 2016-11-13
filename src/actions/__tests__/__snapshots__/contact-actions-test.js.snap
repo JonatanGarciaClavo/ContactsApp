@@ -1,0 +1,84 @@
+exports[`Test contact actions should handle initialize action 1`] = `
+Array [
+  Object {
+    "type": "RESET_CONTACT",
+  },
+]
+`;
+
+exports[`Test contact actions should handle loadData action with empty params 1`] = `
+Array [
+  Object {
+    "id": undefined,
+    "type": "REQUEST_CONTACT",
+  },
+]
+`;
+
+exports[`Test contact actions should handle loadData action with id params 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "type": "REQUEST_CONTACT",
+  },
+]
+`;
+
+exports[`Test contact actions should handle loadData action with id params already in store 1`] = `
+Array [
+  Object {
+    "id": "-1",
+    "type": "REQUEST_CONTACT",
+  },
+]
+`;
+
+exports[`Test contact actions should handle onContactAttributeBlur action 1`] = `
+Array [
+  Object {
+    "name": "email",
+    "type": "VALIDATE_CONTACT_ATTRIBUTE",
+    "value": "new@email.com",
+  },
+]
+`;
+
+exports[`Test contact actions should handle onContactAttributeChange action 1`] = `
+Array [
+  Object {
+    "name": "email",
+    "type": "UPDATE_CONTACT_ATTRIBUTE",
+    "value": "new@email.com",
+  },
+]
+`;
+
+exports[`Test contact actions should handle recieveContact action 1`] = `
+Array [
+  Object {
+    "contact": Object {
+      "email": "test@test.es",
+      "imgUrl": "",
+      "name": "test",
+      "phoneNumber": "123123123",
+    },
+    "type": "REQUEST_CONTACT_SUCCESS",
+  },
+]
+`;
+
+exports[`Test contact actions should handle saveContact with errors action 1`] = `
+Array [
+  Object {
+    "type": "REQUEST_SAVE_CONTACT",
+  },
+]
+`;
+
+exports[`Test contact actions should handle validateContact action 1`] = `
+Array [
+  Object {
+    "type": "VALIDATE_CONTACT",
+  },
+]
+`;

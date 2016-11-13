@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { AppBar, LeftNav, MenuItem, Snackbar } from 'material-ui';
+import { AppBar, Drawer, MenuItem, Snackbar } from 'material-ui';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconElementList from '../components/IconElementList';
 import { browserHistory } from 'react-router';
 import ContactListActions from '../actions/contact-list-actions';
@@ -45,29 +46,31 @@ class App extends Component {
 
   render() {
     return (
-      <div onClick={() => this.onClick}>
-        <AppBar
-          title="Contacts app"
-          onLeftIconButtonTouchTap={this.handleToggle}
-          iconElementRight={this.renderIconElementRight()}
-        />
-        <LeftNav
-          open={this.state.isLeftNavOpen}
-          docked={false}
-          onRequestChange={open => this.setState({ isLeftNavOpen: open })}
-        >
-          <MenuItem onTouchTap={this.handleClose} value="/about">About</MenuItem>
-          <MenuItem onTouchTap={this.handleClose} value="/list">List</MenuItem>
-          <MenuItem onTouchTap={this.handleClose} value="/add">Add Contact</MenuItem>
-        </LeftNav>
-        <div>{this.props.children}</div>
-        <Snackbar
-          open={this.props.snackbar.open}
-          message={this.props.snackbar.message}
-          autoHideDuration={3000}
-          onRequestClose={this.props.closeSnackbar}
-        />
-      </div>
+      <MuiThemeProvider>
+        <div onClick={() => this.onClick}>
+          <AppBar
+            title="Contacts app"
+            onLeftIconButtonTouchTap={this.handleToggle}
+            iconElementRight={this.renderIconElementRight()}
+          />
+          <Drawer
+            open={this.state.isLeftNavOpen}
+            docked={false}
+            onRequestChange={open => this.setState({ isLeftNavOpen: open })}
+          >
+            <MenuItem onTouchTap={this.handleClose} value="/about">About</MenuItem>
+            <MenuItem onTouchTap={this.handleClose} value="/list">List</MenuItem>
+            <MenuItem onTouchTap={this.handleClose} value="/add">Add Contact</MenuItem>
+          </Drawer>
+          <div>{this.props.children}</div>
+          <Snackbar
+            open={this.props.snackbar.open}
+            message={this.props.snackbar.message}
+            autoHideDuration={3000}
+            onRequestClose={this.props.closeSnackbar}
+          />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
@@ -83,6 +86,7 @@ App.propTypes = {
 App.contextTypes = {
   router: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
+  muiTheme: PropTypes.object.isRequired,
 };
 
 

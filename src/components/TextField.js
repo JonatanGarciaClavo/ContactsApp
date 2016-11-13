@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import TextFieldMUI from 'material-ui/lib/text-field';
+import TextFieldMUI from 'material-ui/TextField';
 import _ from 'lodash';
 
 class TextField extends React.Component {
@@ -12,6 +12,12 @@ class TextField extends React.Component {
       value: props.value,
     };
     this.cbOnChange = _.debounce(props.onChange, 250);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.value !== nextProps.value) {
+      this.setState({ value: nextProps.value });
+    }
   }
 
   onChange(e) {

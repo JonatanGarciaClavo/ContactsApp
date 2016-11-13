@@ -1,8 +1,9 @@
-import { LOADING_CONTACT_LIST, INITIALIZE_CONTACT_LIST, CHANGE_LIST_MODE }
+import { REQUEST_CONTACT_LIST, REQUEST_CONTACT_LIST_SUCCESS, CHANGE_LIST_MODE, RESET_CONTACT_LIST }
   from '../constants/contact-list-actions-constants';
+import { SET_ERROR_MESSAGE } from '../constants/snackbar-actions-constants';
 import { LIST_MODE } from '../constants/contact-list-mode-constants';
 
-const initialState = {
+export const initialState = {
   loading: false,
   contacts: [],
   orderBy: 'name',
@@ -11,12 +12,26 @@ const initialState = {
 
 const contactList = (state = initialState, action) => {
   switch (action.type) {
-    case (LOADING_CONTACT_LIST):
-      return Object.assign({}, state, { loading: true });
-    case (INITIALIZE_CONTACT_LIST):
-      return Object.assign({}, state, { contacts: action.contacts, loading: false });
+    case (REQUEST_CONTACT_LIST):
+      return { ...state, loading: true };
+    case (SET_ERROR_MESSAGE):
+      return { ...state, loading: false };
+    case (REQUEST_CONTACT_LIST_SUCCESS):
+      return {
+        ...state,
+        contacts: action.contacts,
+        loading: false,
+      };
     case (CHANGE_LIST_MODE):
-      return Object.assign({}, state, { mode: action.mode || LIST_MODE });
+      if (action.mode === state.mode) {
+        return state;
+      }
+      return {
+        ...state,
+        mode: action.mode || LIST_MODE,
+      };
+    case (RESET_CONTACT_LIST):
+      return { ...initialState };
     default:
       return state;
   }
