@@ -1,4 +1,18 @@
-exports[`Test contact reducer handles INITIALIZE_CONTACT action 1`] = `
+exports[`Test contact reducer handles REQUEST_CONTACT action 1`] = `
+Object {
+  "contact": Object {
+    "email": "",
+    "imgUrl": "",
+    "name": "",
+    "phoneNumber": "",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": true,
+}
+`;
+
+exports[`Test contact reducer handles REQUEST_CONTACT_SUCCESS action 1`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
@@ -12,7 +26,7 @@ Object {
 }
 `;
 
-exports[`Test contact reducer handles LOADING_CONTACT action 1`] = `
+exports[`Test contact reducer handles REQUEST_SAVE_CONTACT action 1`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -23,6 +37,34 @@ Object {
   "errors": Object {},
   "isModified": false,
   "loading": true,
+}
+`;
+
+exports[`Test contact reducer handles RESET_CONTACT action 1`] = `
+Object {
+  "contact": Object {
+    "email": "",
+    "imgUrl": "",
+    "name": "",
+    "phoneNumber": "",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": false,
+}
+`;
+
+exports[`Test contact reducer handles SET_ERROR_MESSAGE action 1`] = `
+Object {
+  "contact": Object {
+    "email": "",
+    "imgUrl": "",
+    "name": "",
+    "phoneNumber": "",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": false,
 }
 `;
 
@@ -85,15 +127,12 @@ Object {
 exports[`Test contact reducer handles VALIDATE_CONTACT success action 1`] = `
 Object {
   "contact": Object {
-    "email": "",
-    "imgUrl": "",
-    "name": "",
-    "phoneNumber": "",
+    "email": "test@test.com",
+    "imgUrl": "http://www.test.image.com",
+    "name": "Tester",
+    "phoneNumber": "666666666",
   },
-  "errors": Object {
-    "email": "Email is required",
-    "name": "Name is required",
-  },
+  "errors": Object {},
   "isModified": false,
   "loading": false,
 }

@@ -7,25 +7,7 @@ import { requestContactList, fetchContacts, requestDeleteContact, fetchDeleteCon
 import ContactListActions from '../../actions/contact-list-actions';
 import SnackbarActions from '../../actions/snackbar-actions';
 import ContactsServices from '../../services/contacts-services';
-import { browserHistory } from 'react-router';
-
-const id = '-1';
-const contacts = [
-  {
-    id: '-1',
-    email: 'test@test.com',
-    imgUrl: 'http://www.test.image.com',
-    name: 'Tester',
-    phoneNumber: '666666666',
-  },
-  {
-    id: '-2',
-    email: 'test2@test.com',
-    imgUrl: 'http://www.test2.image.com',
-    name: 'Tester2',
-    phoneNumber: '766666666',
-  },
-];
+import { id, contacts } from '../../../config/jest/mock-data';
 
 const serverError = new Error('Error from server');
 
@@ -43,9 +25,6 @@ describe('Testing requestContactList', () => {
 describe('Testing fetchContacts', () => {
   describe('Success flow', () => {
     const it = sagaHelper(fetchContacts());
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactListActions.loadingContactList()));
-    });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.list));
 
@@ -62,9 +41,6 @@ describe('Testing fetchContacts', () => {
   });
   describe('Error flow', () => {
     const it = sagaHelper(fetchContacts(id));
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactListActions.loadingContactList()));
-    });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.list));
 
@@ -95,9 +71,6 @@ describe('Testing requestDeleteContact', () => {
 describe('Testing fetchDeleteContact', () => {
   describe('Success flow', () => {
     const it = sagaHelper(fetchDeleteContact(id));
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactListActions.loadingContactList()));
-    });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.delete, id));
     });
@@ -110,9 +83,6 @@ describe('Testing fetchDeleteContact', () => {
   });
   describe('Error flow', () => {
     const it = sagaHelper(fetchDeleteContact(id));
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactListActions.loadingContactList()));
-    });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.delete, id));
 

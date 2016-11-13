@@ -7,7 +7,14 @@ Array [
 ]
 `;
 
-exports[`test should handle changeListMode action LIST_MODE 1`] = `Array []`;
+exports[`test should handle changeListMode action LIST_MODE 1`] = `
+Array [
+  Object {
+    "mode": "list",
+    "type": "CHANGE_LIST_MODE",
+  },
+]
+`;
 
 exports[`test should handle deleteContact action 1`] = `
 Array [
@@ -18,32 +25,18 @@ Array [
 ]
 `;
 
-exports[`test should handle editContact action 1`] = `
+exports[`test should handle initialize action 1`] = `
 Array [
   Object {
-    "contact": Object {
-      "id": "-1",
-    },
-    "type": "INITILIZE_CONTACT_FROM_OTHER_VIEW",
+    "type": "RESET_CONTACT_LIST",
   },
 ]
 `;
 
-exports[`test should handle loadContactCard action 1`] = `
+exports[`test should handle loadData action 1`] = `
 Array [
   Object {
-    "contact": Object {
-      "id": "-1",
-    },
-    "type": "INITILIZE_CONTACT_CARD_FROM_OTHER_VIEW",
-  },
-]
-`;
-
-exports[`test should handle loadingContactList action 1`] = `
-Array [
-  Object {
-    "type": "LOADING_CONTACT_LIST",
+    "type": "REQUEST_CONTACT_LIST",
   },
 ]
 `;
@@ -52,15 +45,29 @@ exports[`test should handle recieveContactList action 1`] = `
 Array [
   Object {
     "contacts": Array [],
-    "type": "INITIALIZE_CONTACT_LIST",
+    "type": "REQUEST_CONTACT_LIST_SUCCESS",
   },
 ]
 `;
 
-exports[`test should handle requestContactList action 1`] = `
+exports[`test should handle transitionToContactCard action 1`] = `
 Array [
   Object {
-    "type": "REQUEST_CONTACT_LIST",
+    "contact": Object {
+      "id": "-1",
+    },
+    "type": "TRANSTION_TO_EDIT_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`test should handle transitionToEditContact action 1`] = `
+Array [
+  Object {
+    "contact": Object {
+      "id": "-1",
+    },
+    "type": "TRANSTION_TO_EDIT_CONTACT",
   },
 ]
 `;

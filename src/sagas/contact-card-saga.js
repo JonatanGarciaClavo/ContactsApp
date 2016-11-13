@@ -1,6 +1,7 @@
-import { take, call, put } from 'redux-saga/effects';
-import { REQUEST_CONTACT_CARD, REQUEST_DELETE_CONTACT_CARD, INITILIZE_CONTACT_CARD_FROM_OTHER_VIEW,
+import { take, call, put, select } from 'redux-saga/effects';
+import { REQUEST_CONTACT_CARD, REQUEST_DELETE_CONTACT_CARD, TRANSTION_TO_EDIT_CONTACT_CARD,
   } from '../constants/contact-card-actions-constants';
+import { contactCardSelector } from './selectors';
 import ContactCardActions from '../actions/contact-card-actions';
 import SnackbarActions from '../actions/snackbar-actions';
 import ContactsServices from '../services/contacts-services';
@@ -8,9 +9,13 @@ import { browserHistory } from 'react-router'
 
 export function* fetchContactCard(id) {
   try {
-    yield put(ContactCardActions.loadingContactCard());
-    const contact = yield call(ContactsServices.get, id)
-    yield put(ContactCardActions.recieveContactCard(contact));
+    const { contact } = yield select(contactCardSelector);
+    if (id === contact.id) {
+      yield put(ContactCardActions.recieveContactCard(contact));
+    } else {
+      const contactDB = yield call(ContactsServices.get, id)
+      yield put(ContactCardActions.recieveContactCard(contactDB));
+    }
   } catch (err) {
     yield put(SnackbarActions.displayError(err));
   }
@@ -25,7 +30,6 @@ export function* requestContactCard() {
 
 export function* fetchDeleteContactCard(id) {
   try {
-    yield put(ContactCardActions.loadingContactCard());
     yield call(ContactsServices.delete, id)
     yield call(browserHistory.push, '/list');
   } catch (err) {
@@ -40,15 +44,10 @@ export function* requestDeleteContactCard() {
   }
 }
 
-export function* initilizeContactCardFromOtherView(contact) {
-  yield put(ContactCardActions.recieveContactCard(contact));
-  yield call(browserHistory.push, `/card/${contact.id}`);
-}
 
-
-export function* requestInitilizeContactCardFromOtherView() {
+export function* requestTransitionToEditContactCard() {
   while (true) {
-    const { contact } = yield take(INITILIZE_CONTACT_CARD_FROM_OTHER_VIEW);
-    yield call(initilizeContactCardFromOtherView, contact);
+    const { contact } = yield take(TRANSTION_TO_EDIT_CONTACT_CARD);
+    yield call(browserHistory.push, `/card/${contact.id}`);
   }
 }

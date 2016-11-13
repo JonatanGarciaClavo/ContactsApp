@@ -1,4 +1,18 @@
-exports[`Test contact card reducer handles INITIALIZE_CONTACT action 1`] = `
+exports[`Test contact card reducer handles REQUEST_CONTACT_CARD action 1`] = `
+Object {
+  "contact": Object {
+    "email": "",
+    "imgUrl": "",
+    "name": "",
+    "phoneNumber": "",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": true,
+}
+`;
+
+exports[`Test contact card reducer handles REQUEST_CONTACT_CARD_SUCCESS action 1`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
@@ -13,7 +27,7 @@ Object {
 }
 `;
 
-exports[`Test contact card reducer handles LOADING_CONTACT action 1`] = `
+exports[`Test contact card reducer handles REQUEST_DELETE_CONTACT_CARD action 1`] = `
 Object {
   "contact": Object {
     "email": "",
@@ -24,6 +38,27 @@ Object {
   "errors": Object {},
   "isModified": false,
   "loading": true,
+}
+`;
+
+exports[`Test contact card reducer handles RESET_CONTACT_CARD action 1`] = `
+Object {
+  "contact": Object {},
+  "loading": false,
+}
+`;
+
+exports[`Test contact card reducer handles SET_ERROR_MESSAGE action 1`] = `
+Object {
+  "contact": Object {
+    "email": "",
+    "imgUrl": "",
+    "name": "",
+    "phoneNumber": "",
+  },
+  "errors": Object {},
+  "isModified": false,
+  "loading": false,
 }
 `;
 

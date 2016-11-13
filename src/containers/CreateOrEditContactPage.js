@@ -8,20 +8,17 @@ class CreateOrEditContactPage extends Component {
   constructor(props) {
     super(props);
     this.onContactSave = this.onContactSave.bind(this);
+    props.actions.initialize();
   }
   componentDidMount() {
     const { actions, params } = this.props;
-    actions.initializeCreateOrEditContact(params);
+    actions.loadData(params);
   }
   componentWillReceiveProps(nextProps) {
     const { actions, params } = this.props;
     if (params.id !== nextProps.params.id) {
-      actions.initializeCreateOrEditContact(nextProps.params);
+      actions.loadData(nextProps.params);
     }
-  }
-  componentWillUnmount() {
-    const { actions, params } = this.props;
-    actions.initializeCreateOrEditContact(params);
   }
   onContactSave() {
     const { actions } = this.props;

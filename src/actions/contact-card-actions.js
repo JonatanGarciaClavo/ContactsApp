@@ -1,29 +1,22 @@
-import { LOADING_CONTACT_CARD, INITIALIZE_CONTACT_CARD, REQUEST_CONTACT_CARD,
+import { RESET_CONTACT_CARD, REQUEST_CONTACT_CARD_SUCCESS, REQUEST_CONTACT_CARD,
   REQUEST_DELETE_CONTACT_CARD } from '../constants/contact-card-actions-constants';
-import { INITILIZE_CONTACT_FROM_OTHER_VIEW } from '../constants/contact-actions-constants';
-import Promise from 'bluebird';
+import { TRANSTION_TO_EDIT_CONTACT } from '../constants/contact-actions-constants';
 
 export default {
-  requestContactCard(params) {
-    return (dispatch, getState) => {
-      const contact = getState().contactCard.contact;
-      if (params.id === contact.id) {
-        return Promise.resolve();
-      }
-      return dispatch({
-        type: REQUEST_CONTACT_CARD,
-        id: params.id,
-      });
-    }
-  },
-  loadingContactCard() {
+  initialize() {
     return {
-      type: LOADING_CONTACT_CARD,
+      type: RESET_CONTACT_CARD,
+    };
+  },
+  loadData(params) {
+    return {
+      type: REQUEST_CONTACT_CARD,
+      id: params.id,
     };
   },
   recieveContactCard(contact) {
     return {
-      type: INITIALIZE_CONTACT_CARD,
+      type: REQUEST_CONTACT_CARD_SUCCESS,
       contact,
     };
   },
@@ -33,9 +26,9 @@ export default {
       id,
     };
   },
-  editContact(contact) {
+  transtionToEditContact(contact) {
     return {
-      type: INITILIZE_CONTACT_FROM_OTHER_VIEW,
+      type: TRANSTION_TO_EDIT_CONTACT,
       contact,
     };
   },

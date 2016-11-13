@@ -9,11 +9,11 @@ jest.mock('react/lib/ReactDefaultInjection');
 describe('Testing IconElementList component', () => {
   it('renders IconElementList using Snapshots', () => {
     expect(renderer.create(
-    	<MuiThemeProvider>
-	      <IconElementList
-	        changeListMode={jest.fn}
-	      />
-	     </MuiThemeProvider>
+      <MuiThemeProvider>
+        <IconElementList
+          changeListMode={jest.fn}
+        />
+       </MuiThemeProvider>
     )).toMatchSnapshot();
   });
 });

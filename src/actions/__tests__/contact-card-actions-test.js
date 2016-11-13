@@ -1,5 +1,5 @@
 import mockStore from 'redux-mock-store';
-import { requestContactCard, loadingContactCard, recieveContactCard, deleteContact, editContact,
+import { loadData, initialize, recieveContactCard, deleteContact, transtionToEditContact,
   } from '../contact-card-actions';
 import { initialState } from '../../reducers/contact-card-reducer';
 
@@ -9,17 +9,17 @@ describe('Test contact card actions', () => {
   beforeEach(() => {
     store.clearActions();
   });
-  it('should handle requestContactCard action when contanct it is not stored', () => {
-    store.dispatch(requestContactCard({ id: -1 }));
+  it('should handle loadData action when contanct it is not stored', () => {
+    store.dispatch(loadData({ id: -1 }));
     expect(store.getActions()).toMatchSnapshot();
   });
-  it('should handle requestContactCard action when contanct it is stored', () => {
+  it('should handle loadData action when contanct it is stored', () => {
     const prefilledStore = mockStore({ contactCard: { ...initialState, contact: { id: '-1' } } });
-    prefilledStore.dispatch(requestContactCard({ id: '-1' }));
+    prefilledStore.dispatch(loadData({ id: '-1' }));
     expect(prefilledStore.getActions()).toMatchSnapshot();
   });
-  it('should handle loadingContactCard action', () => {
-    store.dispatch(loadingContactCard());
+  it('should handle initialize action', () => {
+    store.dispatch(initialize());
     expect(store.getActions()).toMatchSnapshot();
   });
   it('should handle recieveContactCard action', () => {
@@ -36,8 +36,8 @@ describe('Test contact card actions', () => {
     store.dispatch(deleteContact('-1'));
     expect(store.getActions()).toMatchSnapshot();
   });
-  it('should handle editContact action', () => {
-    store.dispatch(editContact({ id: '-1' }));
+  it('should handle transtionToEditContact action', () => {
+    store.dispatch(transtionToEditContact({ id: '-1' }));
     expect(store.getActions()).toMatchSnapshot();
   });
 });

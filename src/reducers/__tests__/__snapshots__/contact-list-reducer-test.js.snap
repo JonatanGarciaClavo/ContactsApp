@@ -7,6 +7,15 @@ Object {
 }
 `;
 
+exports[`Test contact list reducer handles CHANGE_LIST_MODE sending same mode as it is stored 1`] = `
+Object {
+  "contacts": Array [],
+  "loading": false,
+  "mode": "list",
+  "orderBy": "name",
+}
+`;
+
 exports[`Test contact list reducer handles CHANGE_LIST_MODE without send new mode action 1`] = `
 Object {
   "contacts": Array [],
@@ -16,7 +25,16 @@ Object {
 }
 `;
 
-exports[`Test contact list reducer handles INITIALIZE_CONTACT_LIST action 1`] = `
+exports[`Test contact list reducer handles REQUEST_CONTACT_LIST action 1`] = `
+Object {
+  "contacts": Array [],
+  "loading": true,
+  "mode": "list",
+  "orderBy": "name",
+}
+`;
+
+exports[`Test contact list reducer handles REQUEST_CONTACT_LIST_SUCCESS action 1`] = `
 Object {
   "contacts": Array [
     Object {
@@ -40,10 +58,19 @@ Object {
 }
 `;
 
-exports[`Test contact list reducer handles LOADING_CONTACT_LIST action 1`] = `
+exports[`Test contact list reducer handles RESET_CONTACT_LIST action 1`] = `
 Object {
   "contacts": Array [],
-  "loading": true,
+  "loading": false,
+  "mode": "list",
+  "orderBy": "name",
+}
+`;
+
+exports[`Test contact list reducer handles SET_ERROR_MESSAGE action 1`] = `
+Object {
+  "contacts": Array [],
+  "loading": false,
   "mode": "list",
   "orderBy": "name",
 }

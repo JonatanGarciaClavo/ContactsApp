@@ -1,24 +1,16 @@
 import sagaHelper from 'redux-saga-testing';
-import { take, call, put } from 'redux-saga/effects';
-import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, INITILIZE_CONTACT_FROM_OTHER_VIEW }
+import { take, call, put, select } from 'redux-saga/effects';
+import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, TRANSTION_TO_EDIT_CONTACT }
   from '../../constants/contact-actions-constants';
 import { requestSaveContact, saveContact, requestContact, fetchContact,
-  requestInitilizeContactFromOtherView, initilizeContactFromOtherView,
-  } from '../contact-saga';
+  requestTransitionToEditContact } from '../contact-saga';
+import { contactSelector, contactListSelector } from '../selectors';
 import ContactActions from '../../actions/contact-actions';
 import SnackbarActions from '../../actions/snackbar-actions';
 import ContactsServices from '../../services/contacts-services';
 import { browserHistory } from 'react-router';
 import _ from 'lodash';
-
-const id = '-1';
-const contact = {
-  id,
-  email: 'test@test.es',
-  imgUrl: '',
-  name: 'test',
-  phoneNumber: '123123123',
-};
+import { id, contact, contacts } from '../../../config/jest/mock-data';
 
 const serverError = new Error('Error from server');
 
@@ -34,10 +26,28 @@ describe('Testing requestContact', () => {
 });
 
 describe('Testing fetchContact', () => {
-  describe('Success flow', () => {
+  describe('Success flow contact exists in state', () => {
     const it = sagaHelper(fetchContact(id));
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactActions.loadingContact()));
+    it('should select contacts from contactList reducer', result => {
+      expect(result).toEqual(select(contactListSelector));
+      return {
+        contacts,
+      };
+    });
+    it('and then trigger an action with the transformed data we got from the API', result => {
+      expect(result).toEqual(put(ContactActions.recieveContact(contact)));
+    });
+    it('and then nothing', result => {
+      expect(result).toBeUndefined();
+    });
+  });
+  describe('Success flow request contact to service ', () => {
+    const it = sagaHelper(fetchContact(id));
+    it('should select contacts from contactList reducer', result => {
+      expect(result).toEqual(select(contactListSelector));
+      return {
+        contacts: [],
+      };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.get, id));
@@ -53,10 +63,28 @@ describe('Testing fetchContact', () => {
       expect(result).toBeUndefined();
     });
   });
-  describe('Error flow', () => {
+  describe('Success flow create contact ', () => {
+    const it = sagaHelper(fetchContact());
+    it('should select contacts from contactList reducer', result => {
+      expect(result).toEqual(select(contactListSelector));
+      return {
+        contacts,
+      };
+    });
+    it('and then trigger an action with the initialState contact', result => {
+      expect(result).toEqual(put(ContactActions.recieveContact()));
+    });
+    it('and then nothing', result => {
+      expect(result).toBeUndefined();
+    });
+  });
+  describe('Error flow request contact to service', () => {
     const it = sagaHelper(fetchContact(id));
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactActions.loadingContact()));
+    it('should select contacts from contactList reducer', result => {
+      expect(result).toEqual(select(contactListSelector));
+      return {
+        contacts: [],
+      };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.get, id));
@@ -78,18 +106,24 @@ describe('Testing requestSaveContact', () => {
   const it = sagaHelper(requestSaveContact());
   it('intercept request save contact', result => {
     expect(result).toEqual(take(REQUEST_SAVE_CONTACT));
-    return { errors: {}, contact };
   });
   it('call saveContact', result => {
-    expect(result).toEqual(call(saveContact, {}, contact));
+    expect(result).toEqual(call(saveContact));
   });
 });
 
 describe('Testing saveContact', () => {
   describe('Success update flow', () => {
-    const it = sagaHelper(saveContact({}, contact));
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactActions.loadingContact()));
+    const it = sagaHelper(saveContact());
+    it('should trigger and validate action', result => {
+      expect(result).toEqual(put(ContactActions.validateContact()));
+    });
+    it('should select errors and contact to be saved', result => {
+      expect(result).toEqual(select(contactSelector));
+      return {
+        errors: {},
+        contact,
+      };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.update, contact));
@@ -107,9 +141,16 @@ describe('Testing saveContact', () => {
   });
   describe('Success create flow', () => {
     const createContact = _.omit(contact, 'id');
-    const it = sagaHelper(saveContact({}, createContact));
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactActions.loadingContact()));
+    const it = sagaHelper(saveContact());
+    it('should trigger and validate action', result => {
+      expect(result).toEqual(put(ContactActions.validateContact()));
+    });
+    it('should select errors and contact to be saved', result => {
+      expect(result).toEqual(select(contactSelector));
+      return {
+        errors: {},
+        contact: createContact,
+      };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.create, createContact));
@@ -126,7 +167,17 @@ describe('Testing saveContact', () => {
     });
   });
   describe('Error not all values are valid flow', () => {
-    const it = sagaHelper(saveContact({ name: 'not valid' }, contact));
+    const it = sagaHelper(saveContact());
+    it('should trigger and validate action', result => {
+      expect(result).toEqual(put(ContactActions.validateContact()));
+    });
+    it('should select errors and contact to be saved', result => {
+      expect(result).toEqual(select(contactSelector));
+      return {
+        errors: { name: 'not valid' },
+        contact,
+      };
+    });
     it('and then trigger an action error', result => {
       expect(result).toEqual(put(SnackbarActions.displayError('Contact has errors')));
     });
@@ -135,9 +186,16 @@ describe('Testing saveContact', () => {
     });
   });
   describe('Error server flow', () => {
-    const it = sagaHelper(saveContact({}, contact));
-    it('should trigger and loading action', result => {
-      expect(result).toEqual(put(ContactActions.loadingContact()));
+    const it = sagaHelper(saveContact());
+    it('should trigger and validate action', result => {
+      expect(result).toEqual(put(ContactActions.validateContact()));
+    });
+    it('should select errors and contact to be saved', result => {
+      expect(result).toEqual(select(contactSelector));
+      return {
+        errors: {},
+        contact,
+      };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
       expect(result).toEqual(call(ContactsServices.update, contact));
@@ -154,24 +212,13 @@ describe('Testing saveContact', () => {
     });
   });
 });
-describe('Testing requestInitilizeContactFromOtherView', () => {
-  const it = sagaHelper(requestInitilizeContactFromOtherView());
+describe('Testing requestTransitionToEditContact', () => {
+  const it = sagaHelper(requestTransitionToEditContact());
   it('intercept request contact', result => {
-    expect(result).toEqual(take(INITILIZE_CONTACT_FROM_OTHER_VIEW));
+    expect(result).toEqual(take(TRANSTION_TO_EDIT_CONTACT));
     return { contact };
-  });
-  it('call initilizeContactFromOtherView', result => {
-    expect(result).toEqual(call(initilizeContactFromOtherView, contact));
-  });
-});
-
-describe('Testing initilizeContactFromOtherView', () => {
-  const it = sagaHelper(initilizeContactFromOtherView(contact));
-  it('initialize contact info before redirect', result => {
-    expect(result).toEqual(put(ContactActions.recieveContact(contact)));
   });
   it('call browserHistory push to redirect to edit user pathname', result => {
     expect(result).toEqual(call(browserHistory.push, `/edit/${contact.id}`));
   });
 });
-

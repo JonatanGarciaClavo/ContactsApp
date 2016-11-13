@@ -7,7 +7,6 @@ import ContactsServices from '../services/contacts-services';
 
 export function* fetchContacts() {
   try {
-    yield put(ContactListActions.loadingContactList());
     const contacts = yield call(ContactsServices.list)
     yield put(ContactListActions.recieveContactList(contacts));
   } catch (err) {
@@ -24,7 +23,6 @@ export function* requestContactList() {
 
 export function* fetchDeleteContact(id) {
   try {
-    yield put(ContactListActions.loadingContactList());
     yield call(ContactsServices.delete, id)
     yield call(fetchContacts);
   } catch (err) {

@@ -1,8 +1,9 @@
 import contactList from '../contact-list-reducer';
 import { initialState } from '../contact-list-reducer';
-import { LOADING_CONTACT_LIST, INITIALIZE_CONTACT_LIST, CHANGE_LIST_MODE,
-   } from '../../constants/contact-list-actions-constants';
-import { CARD_MODE } from '../../constants/contact-list-mode-constants';
+import { REQUEST_CONTACT_LIST, REQUEST_CONTACT_LIST_SUCCESS, CHANGE_LIST_MODE, RESET_CONTACT_LIST,
+  } from '../../constants/contact-list-actions-constants';
+import { SET_ERROR_MESSAGE } from '../../constants/snackbar-actions-constants';
+import { CARD_MODE, LIST_MODE } from '../../constants/contact-list-mode-constants';
 
 const contacts = [
   {
@@ -28,11 +29,19 @@ describe('Test contact list reducer', () => {
   it('returns the same state on an unhandled action', () => {
     expect(contactList(initialState, { type: '_NULL' })).toMatchSnapshot();
   });
-  it('handles LOADING_CONTACT_LIST action', () => {
-    expect(contactList(initialState, { type: LOADING_CONTACT_LIST })).toMatchSnapshot();
+  it('handles REQUEST_CONTACT_LIST action', () => {
+    expect(contactList(initialState, { type: REQUEST_CONTACT_LIST })).toMatchSnapshot();
   });
-  it('handles INITIALIZE_CONTACT_LIST action', () => {
-    expect(contactList(initialState, { type: INITIALIZE_CONTACT_LIST, contacts }))
+  it('handles REQUEST_CONTACT_LIST_SUCCESS action', () => {
+    expect(contactList(initialState, { type: REQUEST_CONTACT_LIST_SUCCESS, contacts }))
+      .toMatchSnapshot();
+  });
+  it('handles SET_ERROR_MESSAGE action', () => {
+    expect(contactList(initialState, { type: SET_ERROR_MESSAGE }))
+      .toMatchSnapshot();
+  });
+  it('handles CHANGE_LIST_MODE sending same mode as it is stored', () => {
+    expect(contactList(initialState, { type: CHANGE_LIST_MODE, mode: LIST_MODE }))
       .toMatchSnapshot();
   });
   it('handles CHANGE_LIST_MODE action', () => {
@@ -41,6 +50,10 @@ describe('Test contact list reducer', () => {
   });
   it('handles CHANGE_LIST_MODE without send new mode action', () => {
     expect(contactList(initialState, { type: CHANGE_LIST_MODE }))
+      .toMatchSnapshot();
+  });
+  it('handles RESET_CONTACT_LIST action', () => {
+    expect(contactList(initialState, { type: RESET_CONTACT_LIST }))
       .toMatchSnapshot();
   });
 });

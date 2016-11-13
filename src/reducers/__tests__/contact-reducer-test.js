@@ -1,7 +1,9 @@
 import contact from '../contact-reducer';
 import { initialState } from '../contact-reducer';
-import { LOADING_CONTACT, INITIALIZE_CONTACT, UPDATE_CONTACT_ATTRIBUTE,
-VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE } from '../../constants/contact-actions-constants';
+import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, REQUEST_CONTACT_SUCCESS, UPDATE_CONTACT_ATTRIBUTE,
+  VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE, RESET_CONTACT,
+  } from '../../constants/contact-actions-constants';
+import { SET_ERROR_MESSAGE } from '../../constants/snackbar-actions-constants';
 
 const testContact = {
   email: 'test@test.com',
@@ -18,17 +20,23 @@ describe('Test contact reducer', () => {
     expect(contact(initialState, { type: '_NULL' })).toMatchSnapshot();
   });
 
-  it('handles LOADING_CONTACT action', () => {
-    expect(contact(initialState, { type: LOADING_CONTACT })).toMatchSnapshot();
+  it('handles REQUEST_CONTACT action', () => {
+    expect(contact(initialState, { type: REQUEST_CONTACT })).toMatchSnapshot();
+  });
+  it('handles REQUEST_SAVE_CONTACT action', () => {
+    expect(contact(initialState, { type: REQUEST_SAVE_CONTACT })).toMatchSnapshot();
+  });
+  it('handles SET_ERROR_MESSAGE action', () => {
+    expect(contact(initialState, { type: SET_ERROR_MESSAGE })).toMatchSnapshot();
   });
 
-  it('handles INITIALIZE_CONTACT action', () => {
-    expect(contact(initialState, { type: INITIALIZE_CONTACT, contact: testContact }))
+  it('handles REQUEST_CONTACT_SUCCESS action', () => {
+    expect(contact(initialState, { type: REQUEST_CONTACT_SUCCESS, contact: testContact }))
       .toMatchSnapshot();
   });
 
   it('handles UPDATE_CONTACT_ATTRIBUTE action', () => {
-    const newState = contact(initialState, { type: INITIALIZE_CONTACT, contact: testContact });
+    const newState = contact(initialState, { type: REQUEST_CONTACT_SUCCESS, contact: testContact });
     expect(contact(newState, {
       type: UPDATE_CONTACT_ATTRIBUTE,
       name: 'email',
@@ -96,7 +104,13 @@ describe('Test contact reducer', () => {
   });
 
   it('handles VALIDATE_CONTACT success action', () => {
-    const newState = contact(initialState, { type: INITIALIZE_CONTACT, contact: testContact });
-    expect(contact(initialState, { type: VALIDATE_CONTACT })).toMatchSnapshot();
+    const newState = contact(initialState, { type: REQUEST_CONTACT_SUCCESS, contact: testContact });
+    expect(contact(newState, { type: VALIDATE_CONTACT })).toMatchSnapshot();
+  });
+
+  it('handles RESET_CONTACT action', () => {
+    const newState = contact(initialState, { type: REQUEST_CONTACT_SUCCESS, contact: testContact });
+    expect(contact(newState, { type: RESET_CONTACT }))
+      .toMatchSnapshot();
   });
 });

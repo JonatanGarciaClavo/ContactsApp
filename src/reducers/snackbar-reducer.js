@@ -8,9 +8,9 @@ export const initialState = {
 const snackbar = (state = initialState, action) => {
   switch (action.type) {
     case (CLOSE_ERROR_MESSAGE):
-      return Object.assign({}, initialState);
+      return { ...initialState };
     case (SET_ERROR_MESSAGE):
-      return Object.assign({}, state, { open: true, message: action.message });
+      return { ...state, open: true, message: action.message };
     default:
       return state;
   }

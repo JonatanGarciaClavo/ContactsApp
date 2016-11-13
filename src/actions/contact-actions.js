@@ -1,41 +1,34 @@
-import { LOADING_CONTACT, INITIALIZE_CONTACT, UPDATE_CONTACT_ATTRIBUTE, REQUEST_CONTACT,
-  VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE, REQUEST_SAVE_CONTACT,
+import { REQUEST_CONTACT_SUCCESS, UPDATE_CONTACT_ATTRIBUTE, REQUEST_CONTACT,
+  VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE, REQUEST_SAVE_CONTACT, RESET_CONTACT,
   } from '../constants/contact-actions-constants';
-import Promise from 'bluebird';
-
-const initializeContact = (contact) => ({
-  type: INITIALIZE_CONTACT,
-  contact,
-});
 
 export default {
-  loadingContact() {
+  initialize() {
     return {
-      type: LOADING_CONTACT,
+      type: RESET_CONTACT,
     };
   },
   recieveContact(contact) {
-    return initializeContact(contact);
+    return {
+      type: REQUEST_CONTACT_SUCCESS,
+      contact,
+    };
   },
-  initializeCreateOrEditContact(params) {
-    return (dispatch, getState) => {
-      const contact = getState().contact.contact;
-      if (params.id && params.id === contact.id) {
-        return Promise.resolve();
-      } else if (params.id) {
-        return dispatch({ type: REQUEST_CONTACT, id: params.id });
-      }
-      dispatch({ type: LOADING_CONTACT });
-      return dispatch(initializeContact());
-    }
+  loadData(params = {}) {
+    return {
+      type: REQUEST_CONTACT,
+      id: params.id,
+    };
   },
   saveContact() {
-    return (dispatch, getState) => {
-      dispatch({ type: VALIDATE_CONTACT });
-      const errors = getState().contact.errors;
-      const contact = getState().contact.contact;
-      return dispatch({ type: REQUEST_SAVE_CONTACT, errors, contact });
-    }
+    return {
+      type: REQUEST_SAVE_CONTACT,
+    };
+  },
+  validateContact() {
+    return {
+      type: VALIDATE_CONTACT,
+    };
   },
   onContactAttributeChange(name, value) {
     return {

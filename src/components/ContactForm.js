@@ -27,7 +27,7 @@ class ContactForm extends React.Component {
   }
 
   render() {
-    const { contact: { contact: { name, email, phoneNumber, imgUrl },
+    const { contact: { contact: { name, email, phoneNumber, imgUrl }, loading, isModified,
       errors }, onContactAttributeChange, onContactAttributeBlur } = this.props;
     return (
       <div>
@@ -78,6 +78,7 @@ class ContactForm extends React.Component {
             primary
             onTouchEnd={this.onSubmit}
             onClick={this.onSubmit}
+            disabled={loading || !isModified}
           />
         </form>
       </div>

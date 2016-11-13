@@ -1,24 +1,22 @@
-import { LOADING_CONTACT_LIST, INITIALIZE_CONTACT_LIST, CHANGE_LIST_MODE, REQUEST_CONTACT_LIST,
+import { RESET_CONTACT_LIST, REQUEST_CONTACT_LIST_SUCCESS, CHANGE_LIST_MODE, REQUEST_CONTACT_LIST,
   DELETE_CONTACT } from '../constants/contact-list-actions-constants';
-import { INITILIZE_CONTACT_CARD_FROM_OTHER_VIEW,
-  } from '../constants/contact-card-actions-constants';
-import { INITILIZE_CONTACT_FROM_OTHER_VIEW } from '../constants/contact-actions-constants';
-import Promise from 'bluebird';
+import { TRANSTION_TO_EDIT_CONTACT_CARD } from '../constants/contact-card-actions-constants';
+import { TRANSTION_TO_EDIT_CONTACT } from '../constants/contact-actions-constants';
 
 export default {
-  requestContactList() {
+  initialize() {
+    return {
+      type: RESET_CONTACT_LIST,
+    };
+  },
+  loadData() {
     return {
       type: REQUEST_CONTACT_LIST,
     };
   },
-  loadingContactList() {
-    return {
-      type: LOADING_CONTACT_LIST,
-    };
-  },
   recieveContactList(contacts) {
     return {
-      type: INITIALIZE_CONTACT_LIST,
+      type: REQUEST_CONTACT_LIST_SUCCESS,
       contacts,
     }
   },
@@ -28,27 +26,22 @@ export default {
       id,
     };
   },
-  editContact(contact) {
+  transitionToEditContact(contact) {
     return {
-      type: INITILIZE_CONTACT_FROM_OTHER_VIEW,
+      type: TRANSTION_TO_EDIT_CONTACT,
       contact,
     };
   },
-  loadContactCard(contact) {
+  transitionToContactCard(contact) {
     return {
-      type: INITILIZE_CONTACT_CARD_FROM_OTHER_VIEW,
+      type: TRANSTION_TO_EDIT_CONTACT_CARD,
       contact,
     };
   },
   changeListMode(mode) {
-    return (dispatch, getState) => {
-      if (getState().contactList.mode === mode) {
-        return Promise.resolve();
-      }
-      return dispatch({
-        type: CHANGE_LIST_MODE,
-        mode,
-      });
-    }
+    return {
+      type: CHANGE_LIST_MODE,
+      mode,
+    };
   },
 }

@@ -1,8 +1,8 @@
 import { fork } from 'redux-saga/effects';
 import { requestContactList, requestDeleteContact } from './contact-list-saga';
-import { requestContactCard, requestDeleteContactCard, requestInitilizeContactCardFromOtherView,
+import { requestContactCard, requestDeleteContactCard, requestTransitionToEditContactCard,
   } from './contact-card-saga';
-import { requestSaveContact, requestContact, requestInitilizeContactFromOtherView,
+import { requestSaveContact, requestContact, requestTransitionToEditContact,
 	} from './contact-saga';
 
 export default function* root() {
@@ -11,9 +11,9 @@ export default function* root() {
     fork(requestDeleteContact),
     fork(requestContactCard),
     fork(requestDeleteContactCard),
-    fork(requestInitilizeContactCardFromOtherView),
+    fork(requestTransitionToEditContactCard),
     fork(requestSaveContact),
     fork(requestContact),
-    fork(requestInitilizeContactFromOtherView),
+    fork(requestTransitionToEditContact),
   ];
 }

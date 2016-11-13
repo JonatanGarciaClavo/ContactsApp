@@ -1,6 +1,7 @@
-import { take, call, put } from 'redux-saga/effects';
-import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, INITILIZE_CONTACT_FROM_OTHER_VIEW }
+import { take, call, put, select } from 'redux-saga/effects';
+import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, TRANSTION_TO_EDIT_CONTACT }
   from '../constants/contact-actions-constants';
+import { contactSelector, contactListSelector } from './selectors';
 import ContactActions from '../actions/contact-actions';
 import SnackbarActions from '../actions/snackbar-actions';
 import ContactsServices from '../services/contacts-services';
@@ -9,9 +10,16 @@ import _ from 'lodash';
 
 export function* fetchContact(id) {
   try {
-    yield put(ContactActions.loadingContact());
-    const contact = yield call(ContactsServices.get, id)
-    yield put(ContactActions.recieveContact(contact));
+    const { contacts } = yield select(contactListSelector);
+    const contactsFilteredById = contacts.filter((c) => c.id === id)
+    if (contactsFilteredById && contactsFilteredById.length > 0) {
+      yield put(ContactActions.recieveContact(contactsFilteredById[0]));
+    } else if (id) {
+      const contactDB = yield call(ContactsServices.get, id)
+      yield put(ContactActions.recieveContact(contactDB));
+    } else {
+      yield put(ContactActions.recieveContact());
+    }
   } catch (err) {
     yield put(SnackbarActions.displayError(err));
   }
@@ -24,11 +32,12 @@ export function* requestContact() {
   }
 }
 
-export function* saveContact(errors, contact) {
+export function* saveContact() {
   try {
+    yield put(ContactActions.validateContact());
+    const { errors, contact } = yield select(contactSelector);
     if (_.isEmpty(errors)) {
       const save = contact.id ? 'update' : 'create';
-      yield put(ContactActions.loadingContact());
       yield call(ContactsServices[save], contact)
       yield call(browserHistory.push, '/list');
     } else {
@@ -41,20 +50,14 @@ export function* saveContact(errors, contact) {
 
 export function* requestSaveContact() {
   while (true) {
-    const { errors, contact } = yield take(REQUEST_SAVE_CONTACT);
-    yield call(saveContact, errors, contact);
+    yield take(REQUEST_SAVE_CONTACT);
+    yield call(saveContact);
   }
 }
 
-export function* initilizeContactFromOtherView(contact) {
-  yield put(ContactActions.recieveContact(contact));
-  yield call(browserHistory.push, `/edit/${contact.id}`);
-}
-
-
-export function* requestInitilizeContactFromOtherView() {
+export function* requestTransitionToEditContact() {
   while (true) {
-    const { contact } = yield take(INITILIZE_CONTACT_FROM_OTHER_VIEW);
-    yield call(initilizeContactFromOtherView, contact);
+    const { contact } = yield take(TRANSTION_TO_EDIT_CONTACT);
+    yield call(browserHistory.push, `/edit/${contact.id}`);
   }
 }

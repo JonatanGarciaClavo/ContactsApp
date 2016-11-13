@@ -7,21 +7,28 @@ Array [
 ]
 `;
 
-exports[`Test contact card actions should handle editContact action 1`] = `
+exports[`Test contact card actions should handle initialize action 1`] = `
 Array [
   Object {
-    "contact": Object {
-      "id": "-1",
-    },
-    "type": "INITILIZE_CONTACT_FROM_OTHER_VIEW",
+    "type": "RESET_CONTACT_CARD",
   },
 ]
 `;
 
-exports[`Test contact card actions should handle loadingContactCard action 1`] = `
+exports[`Test contact card actions should handle loadData action when contanct it is not stored 1`] = `
 Array [
   Object {
-    "type": "LOADING_CONTACT_CARD",
+    "id": -1,
+    "type": "REQUEST_CONTACT_CARD",
+  },
+]
+`;
+
+exports[`Test contact card actions should handle loadData action when contanct it is stored 1`] = `
+Array [
+  Object {
+    "id": "-1",
+    "type": "REQUEST_CONTACT_CARD",
   },
 ]
 `;
@@ -36,18 +43,18 @@ Array [
       "name": "React",
       "phoneNumber": "",
     },
-    "type": "INITIALIZE_CONTACT_CARD",
+    "type": "REQUEST_CONTACT_CARD_SUCCESS",
   },
 ]
 `;
 
-exports[`Test contact card actions should handle requestContactCard action when contanct it is not stored 1`] = `
+exports[`Test contact card actions should handle transtionToEditContact action 1`] = `
 Array [
   Object {
-    "id": -1,
-    "type": "REQUEST_CONTACT_CARD",
+    "contact": Object {
+      "id": "-1",
+    },
+    "type": "TRANSTION_TO_EDIT_CONTACT",
   },
 ]
 `;
-
-exports[`Test contact card actions should handle requestContactCard action when contanct it is stored 1`] = `Array []`;

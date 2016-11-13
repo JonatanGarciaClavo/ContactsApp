@@ -14,6 +14,12 @@ class TextField extends React.Component {
     this.cbOnChange = _.debounce(props.onChange, 250);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.state.value !== nextProps.value) {
+      this.setState({ value: nextProps.value });
+    }
+  }
+
   onChange(e) {
     const { name, onChange } = this.props;
     const value = e.target.value;

@@ -15,14 +15,15 @@ class ListContactPage extends Component {
     this.renderContactListItems = this.renderContactListItems.bind(this);
     this.renderContactCardList = this.renderContactCardList.bind(this);
     this.onContactClick = this.onContactClick.bind(this);
+    props.actions.initialize();
   }
 
   componentDidMount() {
-    this.props.actions.requestContactList();
+    this.props.actions.loadData();
   }
 
   onContactClick(contact) {
-    this.props.actions.loadContactCard(contact);
+    this.props.actions.transitionToContactCard(contact);
   }
 
   renderLoader() {
@@ -62,7 +63,7 @@ class ListContactPage extends Component {
         <ContactCard
           key={contact.id}
           contact={contact}
-          onEditClick={() => this.props.actions.editContact(contact)}
+          onEditClick={() => this.props.actions.transitionToEditContact(contact)}
           onDeleteClick={() => this.props.actions.deleteContact(contact.id)}
         />
       );

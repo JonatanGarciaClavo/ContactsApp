@@ -1,16 +1,21 @@
-exports[`Test contact actions should handle initializeCreateOrEditContact action with empty params 1`] = `
+exports[`Test contact actions should handle initialize action 1`] = `
 Array [
   Object {
-    "type": "LOADING_CONTACT",
-  },
-  Object {
-    "contact": undefined,
-    "type": "INITIALIZE_CONTACT",
+    "type": "RESET_CONTACT",
   },
 ]
 `;
 
-exports[`Test contact actions should handle initializeCreateOrEditContact action with id params 1`] = `
+exports[`Test contact actions should handle loadData action with empty params 1`] = `
+Array [
+  Object {
+    "id": undefined,
+    "type": "REQUEST_CONTACT",
+  },
+]
+`;
+
+exports[`Test contact actions should handle loadData action with id params 1`] = `
 Array [
   Object {
     "id": "1",
@@ -19,12 +24,11 @@ Array [
 ]
 `;
 
-exports[`Test contact actions should handle initializeCreateOrEditContact action with id params already in store 1`] = `Array []`;
-
-exports[`Test contact actions should handle loadingContact action 1`] = `
+exports[`Test contact actions should handle loadData action with id params already in store 1`] = `
 Array [
   Object {
-    "type": "LOADING_CONTACT",
+    "id": "-1",
+    "type": "REQUEST_CONTACT",
   },
 ]
 `;
@@ -58,7 +62,7 @@ Array [
       "name": "test",
       "phoneNumber": "123123123",
     },
-    "type": "INITIALIZE_CONTACT",
+    "type": "REQUEST_CONTACT_SUCCESS",
   },
 ]
 `;
@@ -66,17 +70,15 @@ Array [
 exports[`Test contact actions should handle saveContact with errors action 1`] = `
 Array [
   Object {
-    "type": "VALIDATE_CONTACT",
-  },
-  Object {
-    "contact": Object {
-      "email": "",
-      "imgUrl": "",
-      "name": "",
-      "phoneNumber": "",
-    },
-    "errors": Object {},
     "type": "REQUEST_SAVE_CONTACT",
+  },
+]
+`;
+
+exports[`Test contact actions should handle validateContact action 1`] = `
+Array [
+  Object {
+    "type": "VALIDATE_CONTACT",
   },
 ]
 `;
