@@ -6,8 +6,10 @@ const ContactCard = ({ contact, onEditClick, onDeleteClick }) => {
   return (
     <Card style={{ width: '300px', margin: '1em 0 0 0' }}>
       <CardMedia overlay={<CardTitle title={name} />}>
-        <img src={imgUrl ||
-          'http://i.imgur.com/mbZIBzc.png'}
+        <img
+          role="presentation"
+          src={imgUrl ||
+            'http://i.imgur.com/mbZIBzc.png'}
         />
       </CardMedia>
       <CardTitle

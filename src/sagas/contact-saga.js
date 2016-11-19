@@ -1,12 +1,12 @@
 import { take, call, put, select } from 'redux-saga/effects';
+import { browserHistory } from 'react-router';
+import _ from 'lodash';
 import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, TRANSTION_TO_EDIT_CONTACT }
   from '../constants/contact-actions-constants';
 import { contactSelector, contactListSelector } from './selectors';
 import ContactActions from '../actions/contact-actions';
 import SnackbarActions from '../actions/snackbar-actions';
 import ContactsServices from '../services/contacts-services';
-import { browserHistory } from 'react-router';
-import _ from 'lodash';
 
 export function* fetchContact(id) {
   try {
@@ -26,7 +26,7 @@ export function* fetchContact(id) {
 }
 
 export function* requestContact() {
-  while (true) {
+  while (true) {// eslint-disable-line
     const { id } = yield take(REQUEST_CONTACT);
     yield call(fetchContact, id);
   }
@@ -49,14 +49,14 @@ export function* saveContact() {
 }
 
 export function* requestSaveContact() {
-  while (true) {
+  while (true) {// eslint-disable-line
     yield take(REQUEST_SAVE_CONTACT);
     yield call(saveContact);
   }
 }
 
 export function* requestTransitionToEditContact() {
-  while (true) {
+  while (true) {// eslint-disable-line
     const { contact } = yield take(TRANSTION_TO_EDIT_CONTACT);
     yield call(browserHistory.push, `/edit/${contact.id}`);
   }

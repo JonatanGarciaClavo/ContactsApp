@@ -15,7 +15,7 @@ export function* fetchContacts() {
 }
 
 export function* requestContactList() {
-  while (true) {
+  while (true) {// eslint-disable-line
     yield take(REQUEST_CONTACT_LIST);
     yield call(fetchContacts);
   }
@@ -31,7 +31,7 @@ export function* fetchDeleteContact(id) {
 }
 
 export function* requestDeleteContact() {
-  while (true) {
+  while (true) {// eslint-disable-line
     const { id } = yield take(DELETE_CONTACT);
     yield call(fetchDeleteContact, id);
   }

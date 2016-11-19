@@ -1,11 +1,11 @@
 import { take, call, put, select } from 'redux-saga/effects';
+import { browserHistory } from 'react-router'
 import { REQUEST_CONTACT_CARD, REQUEST_DELETE_CONTACT_CARD, TRANSTION_TO_EDIT_CONTACT_CARD,
   } from '../constants/contact-card-actions-constants';
 import { contactCardSelector } from './selectors';
 import ContactCardActions from '../actions/contact-card-actions';
 import SnackbarActions from '../actions/snackbar-actions';
 import ContactsServices from '../services/contacts-services';
-import { browserHistory } from 'react-router'
 
 export function* fetchContactCard(id) {
   try {
@@ -22,7 +22,7 @@ export function* fetchContactCard(id) {
 }
 
 export function* requestContactCard() {
-  while (true) {
+  while (true) {// eslint-disable-line
     const { id } = yield take(REQUEST_CONTACT_CARD);
     yield call(fetchContactCard, id);
   }
@@ -38,7 +38,7 @@ export function* fetchDeleteContactCard(id) {
 }
 
 export function* requestDeleteContactCard() {
-  while (true) {
+  while (true) {// eslint-disable-line
     const { id } = yield take(REQUEST_DELETE_CONTACT_CARD);
     yield call(fetchDeleteContactCard, id);
   }
@@ -46,7 +46,7 @@ export function* requestDeleteContactCard() {
 
 
 export function* requestTransitionToEditContactCard() {
-  while (true) {
+  while (true) {// eslint-disable-line
     const { contact } = yield take(TRANSTION_TO_EDIT_CONTACT_CARD);
     yield call(browserHistory.push, `/card/${contact.id}`);
   }

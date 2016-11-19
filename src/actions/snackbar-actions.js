@@ -1,5 +1,5 @@
-import { CLOSE_ERROR_MESSAGE, SET_ERROR_MESSAGE } from '../constants/snackbar-actions-constants';
 import _ from 'lodash';
+import { CLOSE_ERROR_MESSAGE, SET_ERROR_MESSAGE } from '../constants/snackbar-actions-constants';
 
 export default {
   closeSnackbar() {

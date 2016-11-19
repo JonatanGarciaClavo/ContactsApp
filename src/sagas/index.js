@@ -6,7 +6,7 @@ import { requestSaveContact, requestContact, requestTransitionToEditContact,
 	} from './contact-saga';
 
 export default function* root() {
-  yield[
+  yield [
     fork(requestContactList),
     fork(requestDeleteContact),
     fork(requestContactCard),

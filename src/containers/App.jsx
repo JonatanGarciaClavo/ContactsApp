@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { AppBar, Drawer, MenuItem, Snackbar } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import IconElementList from '../components/IconElementList';
 import { browserHistory } from 'react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import IconElementList from '../components/IconElementList';
 import ContactListActions from '../actions/contact-list-actions';
 import SnackbarActions from '../actions/snackbar-actions';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 const textToRouter = {
   List: '/list',

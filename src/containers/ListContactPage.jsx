@@ -3,9 +3,9 @@ import { List, ListItem, Avatar, LinearProgress, Divider } from 'material-ui';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import _ from 'lodash';
 import ContactListActions from '../actions/contact-list-actions';
 import ContactCard from '../components/ContactCard';
-import _ from 'lodash';
 import { LIST_MODE } from '../constants/contact-list-mode-constants';
 
 class ListContactPage extends Component {
@@ -30,7 +30,7 @@ class ListContactPage extends Component {
     if (this.props.contactList.loading) {
       return <LinearProgress mode="indeterminate" />
     }
-    return <span style={{ width: '4px' }}></span>;
+    return <span style={{ width: '4px' }} />;
   }
 
   renderContactListItems() {

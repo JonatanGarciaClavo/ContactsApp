@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import ContactCard from '../components/ContactCard';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ContactCard from '../components/ContactCard';
 import ContactCardActions from '../actions/contact-card-actions';
 
 class ContactPage extends Component {
