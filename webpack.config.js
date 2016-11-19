@@ -18,6 +18,11 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/dist'
   },
+  eslint: {
+    fix: false,
+    failOnWarning: false,
+    failOnError: false,
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
@@ -28,16 +33,15 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   module: {
+    preLoaders: [
+      {test: /\.jsx?$/, loader: "eslint-loader", exclude: /node_modules/}
+    ],
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         include: __dirname,
-        query: {
-          plugins: ['transform-runtime'],
-          presets: ['es2015', 'stage-0', 'react'],
-        }
       },
       {
         test: /\.json?$/,
@@ -55,5 +59,3 @@ module.exports = {
     ]
   }
 };
-
-
