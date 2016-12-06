@@ -1,16 +1,12 @@
-import contact from '../contact-reducer';
-import { initialState } from '../contact-reducer';
+import Immutable from 'immutable';
+import { initialState, default as contact } from '../contact-reducer';
 import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, REQUEST_CONTACT_SUCCESS, UPDATE_CONTACT_ATTRIBUTE,
   VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE, RESET_CONTACT,
   } from '../../constants/contact-actions-constants';
 import { SET_ERROR_MESSAGE } from '../../constants/snackbar-actions-constants';
+import { contact as mockContact } from '../../../config/jest/mock-data';
 
-const testContact = {
-  email: 'test@test.com',
-  imgUrl: 'http://www.test.image.com',
-  name: 'Tester',
-  phoneNumber: '666666666',
-};
+const testContact = new Immutable.Map(Immutable.fromJS(mockContact));
 
 describe('Test contact reducer', () => {
   it('returns the initialState state on an undefined state', () => {

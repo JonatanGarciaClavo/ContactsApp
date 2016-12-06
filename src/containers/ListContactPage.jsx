@@ -3,7 +3,6 @@ import { List, ListItem, Avatar, LinearProgress, Divider } from 'material-ui';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import _ from 'lodash';
 import ContactListActions from '../actions/contact-list-actions';
 import ContactCard from '../components/ContactCard';
 import { LIST_MODE } from '../constants/contact-list-mode-constants';
@@ -27,7 +26,7 @@ class ListContactPage extends Component {
   }
 
   renderLoader() {
-    if (this.props.contactList.loading) {
+    if (this.props.contactList.get('loading')) {
       return <LinearProgress mode="indeterminate" />
     }
     return <span style={{ width: '4px' }} />;
@@ -36,18 +35,20 @@ class ListContactPage extends Component {
   renderContactListItems() {
     const { contacts } = this.props.contactList;
     const contactList = [];
-    _.each(contacts, (contact, index) => {
+    contacts.forEach((contact, index) => {
       contactList.push(
         <ListItem
-          key={contact.id}
-          leftAvatar={contact.imgUrl ?
-            <Avatar src={contact.imgUrl} /> : <Avatar>{contact.name.substring(0, 1)}</Avatar>}
-          primaryText={contact.name}
-          secondaryText={contact.email}
+          key={contact.get('id')}
+          leftAvatar={contact.get('imgUrl') ?
+            <Avatar src={contact.get('imgUrl')} /> :
+            <Avatar>{contact.get('name').substring(0, 1)}</Avatar>
+          }
+          primaryText={contact.get('name')}
+          secondaryText={contact.get('email')}
           secondaryTextLines={1}
           onTouchTap={() => this.onContactClick(contact)}
           rightIconButton={<DeleteIcon
-            onClick={() => this.props.actions.deleteContact(contact.id)}
+            onClick={() => this.props.actions.deleteContact(contact.get('id'))}
           />}
         />
       );
@@ -58,13 +59,13 @@ class ListContactPage extends Component {
   renderContactCardList() {
     const { contacts } = this.props.contactList;
     const contactList = [];
-    _.each(contacts, (contact, index) => {
+    contacts.forEach((contact, index) => {
       contactList.push(
         <ContactCard
-          key={contact.id}
+          key={contact.get('id')}
           contact={contact}
           onEditClick={() => this.props.actions.transitionToEditContact(contact)}
-          onDeleteClick={() => this.props.actions.deleteContact(contact.id)}
+          onDeleteClick={() => this.props.actions.deleteContact(contact.get('id'))}
         />
       );
       contactList.push(<Divider key={index} inset />);
@@ -73,7 +74,7 @@ class ListContactPage extends Component {
   }
 
   renderContactList() {
-    if (this.props.contactList.mode === LIST_MODE) {
+    if (this.props.contactList.get('mode') === LIST_MODE) {
       return (
         <List subheader="Contacts">
           {this.renderContactListItems()}

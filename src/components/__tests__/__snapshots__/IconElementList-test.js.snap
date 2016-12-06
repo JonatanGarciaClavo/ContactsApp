@@ -83,11 +83,6 @@ exports[`Testing IconElementList component renders IconElementList using Snapsho
       </svg>
     </div>
   </button>
-  <div
-    style={
-      Object {
-        "display": "none",
-      }
-    } />
+  <div />
 </div>
 `;

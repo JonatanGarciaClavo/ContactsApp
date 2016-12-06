@@ -1,5 +1,7 @@
 import sagaHelper from 'redux-saga-testing';
+import Immutable from 'immutable';
 import { take, call, put, select } from 'redux-saga/effects';
+import { browserHistory } from 'react-router';
 import { REQUEST_CONTACT_CARD, REQUEST_DELETE_CONTACT_CARD, TRANSTION_TO_EDIT_CONTACT_CARD,
   } from '../../constants/contact-card-actions-constants';
 import { requestContactCard, fetchContactCard, requestDeleteContactCard, fetchDeleteContactCard,
@@ -9,7 +11,6 @@ import { initialState } from '../../reducers/contact-card-reducer';
 import ContactCardActions from '../../actions/contact-card-actions';
 import SnackbarActions from '../../actions/snackbar-actions';
 import ContactsServices from '../../services/contacts-services';
-import { browserHistory } from 'react-router';
 import { id, contact } from '../../../config/jest/mock-data';
 
 const serverError = new Error('Error from server');
@@ -31,11 +32,13 @@ describe('Testing fetchContactCard', () => {
     it('should select contactCard', result => {
       expect(result).toEqual(select(contactCardSelector));
       return {
-        contact,
+        contact: new Immutable.Map(Immutable.fromJS(contact)),
       };
     });
     it('and then trigger an action with the transformed data we got from the API', result => {
-      expect(result).toEqual(put(ContactCardActions.recieveContactCard(contact)));
+      expect(result).toEqual(put(ContactCardActions.recieveContactCard(
+        new Immutable.Map(Immutable.fromJS(contact))
+      )));
     });
     it('and then nothing', result => {
       expect(result).toBeUndefined();
@@ -57,7 +60,9 @@ describe('Testing fetchContactCard', () => {
       return contact;
     });
     it('and then trigger an action with the transformed data we got from the API', result => {
-      expect(result).toEqual(put(ContactCardActions.recieveContactCard(contact)));
+      expect(result).toEqual(put(ContactCardActions.recieveContactCard(
+        new Immutable.Map(Immutable.fromJS(contact))
+      )));
     });
     it('and then nothing', result => {
       expect(result).toBeUndefined();
@@ -133,7 +138,7 @@ describe('Testing requestTransitionToEditContactCard', () => {
   const it = sagaHelper(requestTransitionToEditContactCard());
   it('intercept request contact card', result => {
     expect(result).toEqual(take(TRANSTION_TO_EDIT_CONTACT_CARD));
-    return { contact };
+    return { contact: new Immutable.Map(Immutable.fromJS(contact)) };
   });
   it('call browserHistory push to redirect to edit user pathname', result => {
     expect(result).toEqual(call(browserHistory.push, `/card/${contact.id}`));

@@ -37,6 +37,7 @@ exports[`Testing ContactCard component renders ContactCard omit imgUrl using Sna
           }
         }>
         <img
+          role="presentation"
           src="http://i.imgur.com/mbZIBzc.png"
           style={
             Object {
@@ -341,6 +342,7 @@ exports[`Testing ContactCard component renders ContactCard omit phone using Snap
           }
         }>
         <img
+          role="presentation"
           src="http://www.test.image.com"
           style={
             Object {
@@ -645,6 +647,7 @@ exports[`Testing ContactCard component renders ContactCard using Snapshots 1`] =
           }
         }>
         <img
+          role="presentation"
           src="http://www.test.image.com"
           style={
             Object {

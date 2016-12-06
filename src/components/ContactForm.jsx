@@ -37,7 +37,7 @@ class ContactForm extends React.Component {
             placeholder="Name"
             name="name"
             value={name}
-            errorText={errors.name}
+            errorText={errors.get('name')}
             onChange={onContactAttributeChange}
             onBlur={onContactAttributeBlur}
             onEnterKeyDown={this.onSubmit}
@@ -47,7 +47,7 @@ class ContactForm extends React.Component {
             placeholder="Email"
             name="email"
             value={email}
-            errorText={errors.email}
+            errorText={errors.get('email')}
             onChange={onContactAttributeChange}
             onBlur={onContactAttributeBlur}
             onEnterKeyDown={this.onSubmit}
@@ -57,7 +57,7 @@ class ContactForm extends React.Component {
             placeholder="Phone number"
             name="phoneNumber"
             value={phoneNumber}
-            errorText={errors.phoneNumber}
+            errorText={errors.get('phoneNumber')}
             onChange={onContactAttributeChange}
             onBlur={onContactAttributeBlur}
             onEnterKeyDown={this.onSubmit}
@@ -67,7 +67,7 @@ class ContactForm extends React.Component {
             placeholder="Profile image url"
             name="imgUrl"
             value={imgUrl}
-            errorText={errors.imgUrl}
+            errorText={errors.get('imgUrl')}
             onChange={onContactAttributeChange}
             onBlur={onContactAttributeBlur}
             onEnterKeyDown={this.onSubmit}

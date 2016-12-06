@@ -1,16 +1,11 @@
-import contactCard from '../contact-card-reducer';
-import { initialState } from '../contact-reducer';
+import Immutable from 'immutable';
+import { initialState, default as contactCard } from '../contact-card-reducer';
 import { REQUEST_CONTACT_CARD, REQUEST_DELETE_CONTACT_CARD, REQUEST_CONTACT_CARD_SUCCESS,
   RESET_CONTACT_CARD } from '../../constants/contact-card-actions-constants';
 import { SET_ERROR_MESSAGE } from '../../constants/snackbar-actions-constants';
+import { contact } from '../../../config/jest/mock-data';
 
-const testContact = {
-  id: '-1',
-  email: 'test@test.com',
-  imgUrl: 'http://www.test.image.com',
-  name: 'Tester',
-  phoneNumber: '666666666',
-};
+const testContact = new Immutable.Map(Immutable.fromJS(contact));
 
 describe('Test contact card reducer', () => {
   it('returns the initialState state on an undefined state', () => {
@@ -35,7 +30,7 @@ describe('Test contact card reducer', () => {
       .toMatchSnapshot();
   });
   it('handles RESET_CONTACT_CARD action', () => {
-    expect(contactCard(initialState, { type: RESET_CONTACT_CARD, contact: testContact }))
+    expect(contactCard(initialState, { type: RESET_CONTACT_CARD }))
       .toMatchSnapshot();
   });
 });

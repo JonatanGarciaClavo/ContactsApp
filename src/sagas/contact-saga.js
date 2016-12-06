@@ -1,6 +1,6 @@
 import { take, call, put, select } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
-import _ from 'lodash';
+import Immutable from 'immutable';
 import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, TRANSTION_TO_EDIT_CONTACT }
   from '../constants/contact-actions-constants';
 import { contactSelector, contactListSelector } from './selectors';
@@ -11,12 +11,14 @@ import ContactsServices from '../services/contacts-services';
 export function* fetchContact(id) {
   try {
     const { contacts } = yield select(contactListSelector);
-    const contactsFilteredById = contacts.filter((c) => c.id === id)
-    if (contactsFilteredById && contactsFilteredById.length > 0) {
-      yield put(ContactActions.recieveContact(contactsFilteredById[0]));
+    const contactFilteredById = contacts.filter((c) => c.get('id') === id).first();
+    if (contactFilteredById) {
+      yield put(ContactActions.recieveContact(contactFilteredById));
     } else if (id) {
       const contactDB = yield call(ContactsServices.get, id)
-      yield put(ContactActions.recieveContact(contactDB));
+      yield put(ContactActions.recieveContact(
+        new Immutable.Map(Immutable.fromJS(contactDB))
+      ));
     } else {
       yield put(ContactActions.recieveContact());
     }
@@ -36,9 +38,9 @@ export function* saveContact() {
   try {
     yield put(ContactActions.validateContact());
     const { errors, contact } = yield select(contactSelector);
-    if (_.isEmpty(errors)) {
-      const save = contact.id ? 'update' : 'create';
-      yield call(ContactsServices[save], contact)
+    if (errors.isEmpty()) {
+      const save = contact.has('id') ? 'update' : 'create';
+      yield call(ContactsServices[save], contact.toJS())
       yield call(browserHistory.push, '/list');
     } else {
       yield put(SnackbarActions.displayError('Contact has errors'));
@@ -58,6 +60,6 @@ export function* requestSaveContact() {
 export function* requestTransitionToEditContact() {
   while (true) {// eslint-disable-line
     const { contact } = yield take(TRANSTION_TO_EDIT_CONTACT);
-    yield call(browserHistory.push, `/edit/${contact.id}`);
+    yield call(browserHistory.push, `/edit/${contact.get('id')}`);
   }
 }

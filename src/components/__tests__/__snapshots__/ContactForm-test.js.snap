@@ -15,6 +15,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       style={
         Object {
           "backgroundColor": "transparent",
+          "cursor": "auto",
           "display": "inline-block",
           "fontFamily": "Roboto, sans-serif",
           "fontSize": 16,
@@ -28,12 +29,11 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       }>
       <label
         className={undefined}
-        htmlFor="undefined-Name-Name-49349"
+        htmlFor="undefined-Name-Name-34488"
         onTouchTap={undefined}
         style={
           Object {
-            "color": "rgba(0, 0, 0, 0.5)",
-            "cursor": "text",
+            "color": "rgba(0, 0, 0, 0.3)",
             "lineHeight": "22px",
             "muiPrepared": true,
             "pointerEvents": "none",
@@ -63,7 +63,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       </div>
       <input
         disabled={false}
-        id="undefined-Name-Name-49349"
+        id="undefined-Name-Name-34488"
         onBlur={[Function]}
         onChange={[Function]}
         onEnterKeyDown={[Function]}
@@ -76,7 +76,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
             "border": "none",
             "boxSizing": "border-box",
             "color": "rgba(0, 0, 0, 0.87)",
-            "cursor": "initial",
+            "cursor": "inherit",
             "font": "inherit",
             "height": "100%",
             "marginTop": 14,
@@ -127,6 +127,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       style={
         Object {
           "backgroundColor": "transparent",
+          "cursor": "auto",
           "display": "inline-block",
           "fontFamily": "Roboto, sans-serif",
           "fontSize": 16,
@@ -140,12 +141,11 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       }>
       <label
         className={undefined}
-        htmlFor="undefined-Email-Email-24049"
+        htmlFor="undefined-Email-Email-17581"
         onTouchTap={undefined}
         style={
           Object {
-            "color": "rgba(0, 0, 0, 0.5)",
-            "cursor": "text",
+            "color": "rgba(0, 0, 0, 0.3)",
             "lineHeight": "22px",
             "muiPrepared": true,
             "pointerEvents": "none",
@@ -175,7 +175,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       </div>
       <input
         disabled={false}
-        id="undefined-Email-Email-24049"
+        id="undefined-Email-Email-17581"
         onBlur={[Function]}
         onChange={[Function]}
         onEnterKeyDown={[Function]}
@@ -188,7 +188,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
             "border": "none",
             "boxSizing": "border-box",
             "color": "rgba(0, 0, 0, 0.87)",
-            "cursor": "initial",
+            "cursor": "inherit",
             "font": "inherit",
             "height": "100%",
             "marginTop": 14,
@@ -239,6 +239,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       style={
         Object {
           "backgroundColor": "transparent",
+          "cursor": "auto",
           "display": "inline-block",
           "fontFamily": "Roboto, sans-serif",
           "fontSize": 16,
@@ -252,12 +253,11 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       }>
       <label
         className={undefined}
-        htmlFor="undefined-Phonenumber-Phonenumber-39637"
+        htmlFor="undefined-Phonenumber-Phonenumber-44811"
         onTouchTap={undefined}
         style={
           Object {
-            "color": "rgba(0, 0, 0, 0.5)",
-            "cursor": "text",
+            "color": "rgba(0, 0, 0, 0.3)",
             "lineHeight": "22px",
             "muiPrepared": true,
             "pointerEvents": "none",
@@ -287,7 +287,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       </div>
       <input
         disabled={false}
-        id="undefined-Phonenumber-Phonenumber-39637"
+        id="undefined-Phonenumber-Phonenumber-44811"
         onBlur={[Function]}
         onChange={[Function]}
         onEnterKeyDown={[Function]}
@@ -300,7 +300,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
             "border": "none",
             "boxSizing": "border-box",
             "color": "rgba(0, 0, 0, 0.87)",
-            "cursor": "initial",
+            "cursor": "inherit",
             "font": "inherit",
             "height": "100%",
             "marginTop": 14,
@@ -351,6 +351,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       style={
         Object {
           "backgroundColor": "transparent",
+          "cursor": "auto",
           "display": "inline-block",
           "fontFamily": "Roboto, sans-serif",
           "fontSize": 16,
@@ -364,12 +365,11 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       }>
       <label
         className={undefined}
-        htmlFor="undefined-Profileimageurl-Profileimageurl-3097"
+        htmlFor="undefined-Profileimageurl-Profileimageurl-63359"
         onTouchTap={undefined}
         style={
           Object {
-            "color": "rgba(0, 0, 0, 0.5)",
-            "cursor": "text",
+            "color": "rgba(0, 0, 0, 0.3)",
             "lineHeight": "22px",
             "muiPrepared": true,
             "pointerEvents": "none",
@@ -399,7 +399,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       </div>
       <input
         disabled={false}
-        id="undefined-Profileimageurl-Profileimageurl-3097"
+        id="undefined-Profileimageurl-Profileimageurl-63359"
         onBlur={[Function]}
         onChange={[Function]}
         onEnterKeyDown={[Function]}
@@ -412,7 +412,7 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
             "border": "none",
             "boxSizing": "border-box",
             "color": "rgba(0, 0, 0, 0.87)",
-            "cursor": "initial",
+            "cursor": "inherit",
             "font": "inherit",
             "height": "100%",
             "marginTop": 14,
