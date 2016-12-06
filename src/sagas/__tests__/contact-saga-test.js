@@ -1,5 +1,8 @@
 import sagaHelper from 'redux-saga-testing';
+import Immutable from 'immutable';
 import { take, call, put, select } from 'redux-saga/effects';
+import { browserHistory } from 'react-router';
+import _ from 'lodash';
 import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, TRANSTION_TO_EDIT_CONTACT }
   from '../../constants/contact-actions-constants';
 import { requestSaveContact, saveContact, requestContact, fetchContact,
@@ -8,8 +11,6 @@ import { contactSelector, contactListSelector } from '../selectors';
 import ContactActions from '../../actions/contact-actions';
 import SnackbarActions from '../../actions/snackbar-actions';
 import ContactsServices from '../../services/contacts-services';
-import { browserHistory } from 'react-router';
-import _ from 'lodash';
 import { id, contact, contacts } from '../../../config/jest/mock-data';
 
 const serverError = new Error('Error from server');
@@ -31,11 +32,13 @@ describe('Testing fetchContact', () => {
     it('should select contacts from contactList reducer', result => {
       expect(result).toEqual(select(contactListSelector));
       return {
-        contacts,
+        contacts: new Immutable.List(Immutable.fromJS(contacts)),
       };
     });
     it('and then trigger an action with the transformed data we got from the API', result => {
-      expect(result).toEqual(put(ContactActions.recieveContact(contact)));
+      expect(result).toEqual(put(ContactActions.recieveContact(
+        new Immutable.Map(Immutable.fromJS(contact))
+      )));
     });
     it('and then nothing', result => {
       expect(result).toBeUndefined();
@@ -46,7 +49,7 @@ describe('Testing fetchContact', () => {
     it('should select contacts from contactList reducer', result => {
       expect(result).toEqual(select(contactListSelector));
       return {
-        contacts: [],
+        contacts: new Immutable.List(),
       };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
@@ -57,7 +60,9 @@ describe('Testing fetchContact', () => {
       return contact;
     });
     it('and then trigger an action with the transformed data we got from the API', result => {
-      expect(result).toEqual(put(ContactActions.recieveContact(contact)));
+      expect(result).toEqual(put(ContactActions.recieveContact(
+        new Immutable.Map(Immutable.fromJS(contact))
+      )));
     });
     it('and then nothing', result => {
       expect(result).toBeUndefined();
@@ -68,7 +73,7 @@ describe('Testing fetchContact', () => {
     it('should select contacts from contactList reducer', result => {
       expect(result).toEqual(select(contactListSelector));
       return {
-        contacts,
+        contacts: new Immutable.List(Immutable.fromJS(contacts)),
       };
     });
     it('and then trigger an action with the initialState contact', result => {
@@ -83,7 +88,7 @@ describe('Testing fetchContact', () => {
     it('should select contacts from contactList reducer', result => {
       expect(result).toEqual(select(contactListSelector));
       return {
-        contacts: [],
+        contacts: new Immutable.List(),
       };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
@@ -121,8 +126,8 @@ describe('Testing saveContact', () => {
     it('should select errors and contact to be saved', result => {
       expect(result).toEqual(select(contactSelector));
       return {
-        errors: {},
-        contact,
+        errors: new Immutable.Map(),
+        contact: new Immutable.Map(Immutable.fromJS(contact)),
       };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
@@ -148,8 +153,8 @@ describe('Testing saveContact', () => {
     it('should select errors and contact to be saved', result => {
       expect(result).toEqual(select(contactSelector));
       return {
-        errors: {},
-        contact: createContact,
+        errors: new Immutable.Map(),
+        contact: new Immutable.Map(Immutable.fromJS(createContact)),
       };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
@@ -174,8 +179,8 @@ describe('Testing saveContact', () => {
     it('should select errors and contact to be saved', result => {
       expect(result).toEqual(select(contactSelector));
       return {
-        errors: { name: 'not valid' },
-        contact,
+        errors: new Immutable.Map({ name: 'not valid' }),
+        contact: new Immutable.Map(Immutable.fromJS(contact)),
       };
     });
     it('and then trigger an action error', result => {
@@ -193,8 +198,8 @@ describe('Testing saveContact', () => {
     it('should select errors and contact to be saved', result => {
       expect(result).toEqual(select(contactSelector));
       return {
-        errors: {},
-        contact,
+        errors: new Immutable.Map(),
+        contact: new Immutable.Map(Immutable.fromJS(contact)),
       };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
@@ -216,7 +221,7 @@ describe('Testing requestTransitionToEditContact', () => {
   const it = sagaHelper(requestTransitionToEditContact());
   it('intercept request contact', result => {
     expect(result).toEqual(take(TRANSTION_TO_EDIT_CONTACT));
-    return { contact };
+    return { contact: new Immutable.Map(Immutable.fromJS(contact)) };
   });
   it('call browserHistory push to redirect to edit user pathname', result => {
     expect(result).toEqual(call(browserHistory.push, `/edit/${contact.id}`));

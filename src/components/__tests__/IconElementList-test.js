@@ -1,10 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import IconElementList from '../IconElementList';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-// https://github.com/facebook/jest/issues/1353
-jest.mock('react/lib/ReactDefaultInjection');
+import IconElementList from '../IconElementList';
 
 describe('Testing IconElementList component', () => {
   it('renders IconElementList using Snapshots', () => {

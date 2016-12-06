@@ -16,6 +16,7 @@ exports[`Test contact reducer handles REQUEST_CONTACT_SUCCESS action 1`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
+    "id": "-1",
     "imgUrl": "http://www.test.image.com",
     "name": "Tester",
     "phoneNumber": "666666666",
@@ -72,6 +73,7 @@ exports[`Test contact reducer handles UPDATE_CONTACT_ATTRIBUTE action 1`] = `
 Object {
   "contact": Object {
     "email": "test2@test.com",
+    "id": "-1",
     "imgUrl": "http://www.test.image.com",
     "name": "Tester",
     "phoneNumber": "666666666",
@@ -86,6 +88,7 @@ exports[`Test contact reducer handles UPDATE_CONTACT_ATTRIBUTE action 2`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
+    "id": "-1",
     "imgUrl": "http://www.test.image.com/2.png",
     "name": "Tester",
     "phoneNumber": "666666666",
@@ -100,6 +103,7 @@ exports[`Test contact reducer handles UPDATE_CONTACT_ATTRIBUTE action 3`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
+    "id": "-1",
     "imgUrl": "http://www.test.image.com",
     "name": "Tester pro",
     "phoneNumber": "666666666",
@@ -114,6 +118,7 @@ exports[`Test contact reducer handles UPDATE_CONTACT_ATTRIBUTE action 4`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
+    "id": "-1",
     "imgUrl": "http://www.test.image.com",
     "name": "Tester",
     "phoneNumber": "777777777",
@@ -128,6 +133,7 @@ exports[`Test contact reducer handles VALIDATE_CONTACT success action 1`] = `
 Object {
   "contact": Object {
     "email": "test@test.com",
+    "id": "-1",
     "imgUrl": "http://www.test.image.com",
     "name": "Tester",
     "phoneNumber": "666666666",

@@ -26,7 +26,7 @@ npm test
 ```
 or
 ```
-npm test -- --watch
+npm test-watch
 ```
 if you want to activate watch mode
 
@@ -60,6 +60,7 @@ Then open http://localhost
 * React
 * Redux
 * Redux saga
+* Immutable
 * React Router
 * Material-ui
 * Babel

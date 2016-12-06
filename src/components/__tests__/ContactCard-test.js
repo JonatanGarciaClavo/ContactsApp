@@ -1,12 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ContactCard from '../ContactCard';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { contact } from '../../../config/jest/mock-data';
 import _ from 'lodash';
-
-// https://github.com/facebook/jest/issues/1353
-jest.mock('react/lib/ReactDefaultInjection');
+import ContactCard from '../ContactCard';
+import { contact } from '../../../config/jest/mock-data';
 
 describe('Testing ContactCard component', () => {
   it('renders ContactCard using Snapshots', () => {

@@ -1,4 +1,5 @@
 import sagaHelper from 'redux-saga-testing';
+import Immutable from 'immutable';
 import { take, call, put } from 'redux-saga/effects';
 import { REQUEST_CONTACT_LIST, DELETE_CONTACT,
   } from '../../constants/contact-list-actions-constants';
@@ -33,7 +34,9 @@ describe('Testing fetchContacts', () => {
       return contacts;
     });
     it('and then trigger an action with the transformed data we got from the API', result => {
-      expect(result).toEqual(put(ContactListActions.recieveContactList(contacts)));
+      expect(result).toEqual(put(ContactListActions.recieveContactList(
+        new Immutable.List(Immutable.fromJS(contacts))
+      )));
     });
     it('and then nothing', result => {
       expect(result).toBeUndefined();
