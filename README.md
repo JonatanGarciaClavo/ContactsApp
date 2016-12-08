@@ -26,14 +26,14 @@ npm test
 ```
 or
 ```
-npm test-watch
+npm test:watch
 ```
 if you want to activate watch mode
 
 ### Run test coverage (Linux/OSX)
 
 ```
-npm test-coverage
+npm test:coverage
 ```
 Then open ContactsApp/coverage/lcov-report/index.html if you want to see it more detailed than console report.
 
