@@ -1,16 +1,33 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconElementList from '../IconElementList';
 
 describe('Testing IconElementList component', () => {
   it('renders IconElementList using Snapshots', () => {
-    expect(renderer.create(
-      <MuiThemeProvider>
-        <IconElementList
-          changeListMode={jest.fn}
-        />
-       </MuiThemeProvider>
-    )).toMatchSnapshot();
+    const wrapper = shallow(
+      <IconElementList
+        changeListMode={jest.fn}
+      />
+    );
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
+  });
+  it('should click in change mode to List menu option', () => {
+    const changeListMode = jest.fn();
+    const wrapper = shallow(
+      <IconElementList
+        changeListMode={changeListMode}
+      />
+    );
+    wrapper.find({ primaryText: 'List' }).simulate('touchTap');
+    expect(changeListMode).toHaveBeenCalled();
+  });
+  it('should click in change mode to Card menu option', () => {
+    const changeListMode = jest.fn();
+    const wrapper = shallow(
+      <IconElementList
+        changeListMode={changeListMode}
+      />
+    );
+    wrapper.find({ primaryText: 'Card' }).simulate('touchTap');
+    expect(changeListMode).toHaveBeenCalled();
   });
 });

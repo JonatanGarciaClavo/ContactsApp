@@ -1,0 +1,17 @@
+exports[`Testing TextField component renders TextField using Snapshots 1`] = `
+<TextField
+  disabled={false}
+  errorText={null}
+  floatingLabelFixed={false}
+  floatingLabelText="Name"
+  fullWidth={false}
+  hintText="Name"
+  multiLine={false}
+  onBlur={[Function]}
+  onChange={[Function]}
+  onEnterKeyDown={[Function]}
+  rows={1}
+  type="text"
+  underlineShow={true}
+  value="" />
+`;
