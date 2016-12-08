@@ -11,7 +11,7 @@ class TextField extends React.Component {
     this.state = {
       value: props.value,
     };
-    this.cbOnChange = _.debounce(props.onChange, 250);
+    this.cbOnChange = _.debounce(props.onChange || _.noop, 250);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,7 +24,7 @@ class TextField extends React.Component {
     const { name, onChange } = this.props;
     const value = e.target.value;
     this.setState({ value });
-    if (onChange) {
+    if (_.isFunction(onChange)) {
       this.cbOnChange(name, value);
     }
   }
