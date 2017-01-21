@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { List, ListItem, Avatar, LinearProgress, Divider } from 'material-ui';
+import { List, ListItem, Avatar, LinearProgress, Divider, Subheader } from 'material-ui';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -49,7 +49,7 @@ class ListContactPage extends Component {
           secondaryText={contact.get('email')}
           secondaryTextLines={1}
           onTouchTap={() => this.onContactClick(contact)}
-          rightIconButton={<DeleteIcon
+          rightIcon={<DeleteIcon
             onClick={() => this.props.actions.deleteContact(contact.get('id'))}
           />}
         />,
@@ -78,7 +78,8 @@ class ListContactPage extends Component {
   renderContactList() {
     if (this.props.contactList.get('mode') === LIST_MODE) {
       return (
-        <List subheader="Contacts">
+        <List>
+          <Subheader>Contacts</Subheader>
           {this.renderContactListItems()}
         </List>
       );

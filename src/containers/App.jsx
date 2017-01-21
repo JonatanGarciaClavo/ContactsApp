@@ -87,7 +87,6 @@ App.propTypes = {
 App.contextTypes = {
   router: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired,
-  muiTheme: PropTypes.object.isRequired,
 };
 
 
