@@ -9,19 +9,17 @@ import snackbar from '../reducers/snackbar-reducer';
 
 const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
-const reducer = combineReducers(
-  {
-    contact,
-    contactList,
-    contactCard,
-    snackbar,
-  }
-);
+const reducer = combineReducers({
+  contact,
+  contactList,
+  contactCard,
+  snackbar,
+});
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware,
   logger,
-  sagaMiddleware
+  sagaMiddleware,
 );
 
 export default function configureStore() {

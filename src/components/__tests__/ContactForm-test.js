@@ -2,15 +2,17 @@ import React from 'react';
 import Immutable from 'immutable';
 import ContactForm from '../ContactForm';
 import { contact } from '../../../config/jest/mock-data';
+import { Contact } from '../../reducers/contact-reducer';
+import ContactModel from '../../models/ContactModel';
 
 describe('Testing ContactForm component', () => {
   it('renders ContactForm using Snapshots', () => {
     const wrapper = shallow(
       <ContactForm
-        contact={{
-          contact: new Immutable.Map(Immutable.fromJS(contact)),
+        contact={new Contact({
+          contact: new ContactModel(contact),
           errors: new Immutable.Map(),
-        }}
+        })}
         onContactAttributeChange={jest.fn}
         onContactAttributeBlur={jest.fn}
         onSaveClick={jest.fn}
@@ -24,10 +26,10 @@ describe('Testing ContactForm component', () => {
       <ContactForm
         loading={false}
         isModified
-        contact={{
-          contact: new Immutable.Map(Immutable.fromJS(contact)),
+        contact={new Contact({
+          contact: new ContactModel(contact),
           errors: new Immutable.Map(),
-        }}
+        })}
         onContactAttributeChange={jest.fn}
         onContactAttributeBlur={jest.fn}
         onSaveClick={onSave}

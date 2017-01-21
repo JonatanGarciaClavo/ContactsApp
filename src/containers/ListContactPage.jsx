@@ -3,9 +3,11 @@ import { List, ListItem, Avatar, LinearProgress, Divider } from 'material-ui';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Record } from 'immutable';
 import ContactListActions from '../actions/contact-list-actions';
 import ContactCard from '../components/ContactCard';
 import { LIST_MODE } from '../constants/contact-list-mode-constants';
+import { contactListActionsShape } from '../prop-types';
 
 class ListContactPage extends Component {
   constructor(props) {
@@ -35,10 +37,10 @@ class ListContactPage extends Component {
   renderContactListItems() {
     const { contacts } = this.props.contactList;
     const contactList = [];
-    contacts.forEach((contact, index) => {
+    contacts.forEach((contact) => {
       contactList.push(
         <ListItem
-          key={contact.get('id')}
+          key={`contact-${contact.get('id')}`}
           leftAvatar={contact.get('imgUrl') ?
             <Avatar src={contact.get('imgUrl')} /> :
             <Avatar>{contact.get('name').substring(0, 1)}</Avatar>
@@ -50,25 +52,25 @@ class ListContactPage extends Component {
           rightIconButton={<DeleteIcon
             onClick={() => this.props.actions.deleteContact(contact.get('id'))}
           />}
-        />
+        />,
       );
-      contactList.push(<Divider key={index} inset />);
+      contactList.push(<Divider key={`divider-${contact.get('id')}`} inset />);
     });
     return contactList;
   }
   renderContactCardList() {
     const { contacts } = this.props.contactList;
     const contactList = [];
-    contacts.forEach((contact, index) => {
+    contacts.forEach((contact) => {
       contactList.push(
         <ContactCard
-          key={contact.get('id')}
+          key={`contact-${contact.get('id')}`}
           contact={contact}
           onEditClick={() => this.props.actions.transitionToEditContact(contact)}
           onDeleteClick={() => this.props.actions.deleteContact(contact.get('id'))}
-        />
+        />,
       );
-      contactList.push(<Divider key={index} inset />);
+      contactList.push(<Divider key={`divider-${contact.get('id')}`} inset />);
     });
     return contactList;
   }
@@ -98,15 +100,14 @@ class ListContactPage extends Component {
 }
 
 ListContactPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  contactList: PropTypes.object.isRequired,
+  actions: contactListActionsShape.isRequired,
+  contactList: PropTypes.instanceOf(Record).isRequired,
 };
 
-const mapStateToProps = (store) => ({ contactList: store.contactList });
+const mapStateToProps = store => ({ contactList: store.contactList });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(ContactListActions, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListContactPage);
-

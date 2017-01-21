@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Record } from 'immutable';
 import ContactActions from '../actions/contact-actions';
 import ContactForm from '../components/ContactForm';
+import { contactActionsShape, contactParamsShape } from '../prop-types';
 
 class CreateOrEditContactPage extends Component {
   constructor(props) {
@@ -37,17 +39,21 @@ class CreateOrEditContactPage extends Component {
   }
 }
 
-CreateOrEditContactPage.propTypes = {
-  contact: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
-  params: PropTypes.object,
+CreateOrEditContactPage.defaultProps = {
+  params: {},
 };
 
-const mapStateToProps = (store) => ({
+CreateOrEditContactPage.propTypes = {
+  contact: PropTypes.instanceOf(Record).isRequired,
+  actions: contactActionsShape.isRequired,
+  params: contactParamsShape,
+};
+
+const mapStateToProps = store => ({
   contact: store.contact,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(ContactActions, dispatch),
 });
 

@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { AppBar, Drawer, MenuItem, Snackbar } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { browserHistory } from 'react-router';
+import { browserHistory, locationShape } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Record } from 'immutable';
 import IconElementList from '../components/IconElementList';
 import ContactListActions from '../actions/contact-list-actions';
 import SnackbarActions from '../actions/snackbar-actions';
@@ -47,7 +48,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div onClick={() => this.onClick}>
+        <div>
           <AppBar
             title="Contacts app"
             onLeftIconButtonTouchTap={this.handleToggle}
@@ -64,8 +65,8 @@ class App extends Component {
           </Drawer>
           <div>{this.props.children}</div>
           <Snackbar
-            open={this.props.snackbar.open}
-            message={this.props.snackbar.message}
+            open={this.props.snackbar.get('open')}
+            message={this.props.snackbar.get('message')}
             autoHideDuration={3000}
             onRequestClose={this.props.closeSnackbar}
           />
@@ -77,8 +78,8 @@ class App extends Component {
 
 App.propTypes = {
   children: PropTypes.node.isRequired,
-  location: PropTypes.object,
-  snackbar: PropTypes.object.isRequired,
+  location: locationShape.isRequired,
+  snackbar: PropTypes.instanceOf(Record).isRequired,
   closeSnackbar: PropTypes.func.isRequired,
   changeListMode: PropTypes.func.isRequired,
 };
@@ -90,11 +91,11 @@ App.contextTypes = {
 };
 
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   snackbar: store.snackbar,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   closeSnackbar: bindActionCreators(SnackbarActions, dispatch).closeSnackbar,
   changeListMode: bindActionCreators(ContactListActions, dispatch).changeListMode,
 });

@@ -37,22 +37,29 @@ class TextField extends React.Component {
   }
 
   render() {
-    const { label, name, placeholder, type, errorText, onEnterKeyDown } = this.props;
+    const { label, name, placeholder, type, errorText } = this.props;
     return (
       <TextFieldMUI
         value={this.state.value}
         floatingLabelText={label || name}
         hintText={placeholder}
-        type={type || 'text'}
+        type={type}
         errorText={errorText}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        onEnterKeyDown={onEnterKeyDown}
       />
-
     );
   }
 }
+
+TextField.defaultProps = {
+  label: '',
+  placeholder: null,
+  type: 'text',
+  errorText: null,
+  onChange: _.noop,
+  onBlur: _.noop,
+};
 
 TextField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -66,7 +73,6 @@ TextField.propTypes = {
   errorText: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
-  onEnterKeyDown: PropTypes.func,
 };
 
 export default TextField;

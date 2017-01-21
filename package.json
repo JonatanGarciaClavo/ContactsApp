@@ -16,9 +16,12 @@
     "test:coverage": "jest --coverage"
   },
   "jest": {
-    "setupFiles": ["./config/jest/jest-setup.js"],
-    "collectCoverageFrom":[
+    "setupFiles": [
+      "./config/jest/jest-setup.js"
+    ],
+    "collectCoverageFrom": [
       "**/src/**/*.js",
+      "**/src/components/*.jsx",
       "!**/__mocks__/**",
       "!**/coverage/**",
       "!**/src/**/index.js",
@@ -82,14 +85,14 @@
     "babel-runtime": "^6.6.1",
     "enzyme": "^2.6.0",
     "enzyme-to-json": "^1.4.4",
-    "eslint": "^3.3.0",
-    "eslint-config-airbnb": "^10.0.0",
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb": "^14.0.0",
     "eslint-loader": "^1.6.1",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^2.0.1",
-    "eslint-plugin-react": "^6.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
     "file-loader": "^0.8.5",
-    "jest": "^16.0.1",
+    "jest": "^18.1.0",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.4.1",
     "react-test-renderer": "^15.4.1",

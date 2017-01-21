@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { RaisedButton } from 'material-ui';
+import { Record } from 'immutable';
+import _ from 'lodash';
 import TextField from './TextField';
 
 const styles = {
@@ -40,7 +42,6 @@ class ContactForm extends React.Component {
             errorText={errors.get('name')}
             onChange={onContactAttributeChange}
             onBlur={onContactAttributeBlur}
-            onEnterKeyDown={this.onSubmit}
           />
           <TextField
             label="Email"
@@ -50,7 +51,6 @@ class ContactForm extends React.Component {
             errorText={errors.get('email')}
             onChange={onContactAttributeChange}
             onBlur={onContactAttributeBlur}
-            onEnterKeyDown={this.onSubmit}
           />
           <TextField
             label="Phone number"
@@ -60,7 +60,6 @@ class ContactForm extends React.Component {
             errorText={errors.get('phoneNumber')}
             onChange={onContactAttributeChange}
             onBlur={onContactAttributeBlur}
-            onEnterKeyDown={this.onSubmit}
           />
           <TextField
             label="Profile image url"
@@ -70,7 +69,6 @@ class ContactForm extends React.Component {
             errorText={errors.get('imgUrl')}
             onChange={onContactAttributeChange}
             onBlur={onContactAttributeBlur}
-            onEnterKeyDown={this.onSubmit}
           />
           <RaisedButton
             style={styles.buttonStyle}
@@ -86,8 +84,12 @@ class ContactForm extends React.Component {
   }
 }
 
+ContactForm.defaultProps = {
+  onContactAttributeBlur: _.noop,
+};
+
 ContactForm.propTypes = {
-  contact: PropTypes.object.isRequired,
+  contact: PropTypes.instanceOf(Record).isRequired,
   onContactAttributeChange: PropTypes.func.isRequired,
   onContactAttributeBlur: PropTypes.func,
   onSaveClick: PropTypes.func.isRequired,

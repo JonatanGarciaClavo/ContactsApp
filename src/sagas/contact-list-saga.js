@@ -10,7 +10,7 @@ export function* fetchContacts() {
   try {
     const contacts = yield call(ContactsServices.list)
     yield put(ContactListActions.recieveContactList(
-      new Immutable.List(Immutable.fromJS(contacts))
+      new Immutable.List(Immutable.fromJS(contacts)),
     ));
   } catch (err) {
     yield put(SnackbarActions.displayError(err));

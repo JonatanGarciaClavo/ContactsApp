@@ -11,36 +11,40 @@ exports[`Testing ContactForm component renders ContactForm using Snapshots 1`] =
       }
     }>
     <TextField
+      errorText={null}
       label="Name"
       name="name"
       onBlur={[Function]}
       onChange={[Function]}
-      onEnterKeyDown={[Function]}
       placeholder="Name"
+      type="text"
       value="Tester" />
     <TextField
+      errorText={null}
       label="Email"
       name="email"
       onBlur={[Function]}
       onChange={[Function]}
-      onEnterKeyDown={[Function]}
       placeholder="Email"
+      type="text"
       value="test@test.com" />
     <TextField
+      errorText={null}
       label="Phone number"
       name="phoneNumber"
       onBlur={[Function]}
       onChange={[Function]}
-      onEnterKeyDown={[Function]}
       placeholder="Phone number"
+      type="text"
       value="666666666" />
     <TextField
+      errorText={null}
       label="Profile image url"
       name="imgUrl"
       onBlur={[Function]}
       onChange={[Function]}
-      onEnterKeyDown={[Function]}
       placeholder="Profile image url"
+      type="text"
       value="http://www.test.image.com" />
     <RaisedButton
       disabled={true}
