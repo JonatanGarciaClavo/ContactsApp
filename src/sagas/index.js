@@ -3,7 +3,7 @@ import { requestContactList, requestDeleteContact } from './contact-list-saga';
 import { requestContactCard, requestDeleteContactCard, requestTransitionToEditContactCard,
   } from './contact-card-saga';
 import { requestSaveContact, requestContact, requestTransitionToEditContact,
-	} from './contact-saga';
+  } from './contact-saga';
 
 export default function* root() {
   yield [

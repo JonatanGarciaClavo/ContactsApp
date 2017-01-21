@@ -9,7 +9,6 @@ exports[`Testing TextField component renders TextField using Snapshots 1`] = `
   multiLine={false}
   onBlur={[Function]}
   onChange={[Function]}
-  onEnterKeyDown={[Function]}
   rows={1}
   type="text"
   underlineShow={true}

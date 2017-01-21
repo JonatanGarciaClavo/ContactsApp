@@ -15,8 +15,67 @@ exports[`Testing ContactCard component renders ContactCard omit imgUrl using Sna
         title="Tester" />
     }>
     <img
+      alt=""
       role="presentation"
       src="http://i.imgur.com/mbZIBzc.png" />
+  </CardMedia>
+  <CardTitle
+    subtitle="666666666"
+    title="test@test.com"
+    titleStyle={
+      Object {
+        "fontSize": "12pt",
+      }
+    } />
+  <CardActions>
+    <FlatButton
+      disabled={false}
+      label="Edit"
+      labelPosition="after"
+      labelStyle={Object {}}
+      onClick={[Function]}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onTouchStart={[Function]}
+      primary={false}
+      secondary={false} />
+    <FlatButton
+      disabled={false}
+      label="Delete"
+      labelPosition="after"
+      labelStyle={Object {}}
+      onClick={[Function]}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onTouchStart={[Function]}
+      primary={false}
+      secondary={false} />
+  </CardActions>
+</Card>
+`;
+
+exports[`Testing ContactCard component renders ContactCard omit onEditClick and onDeleteClick using Snapshots 1`] = `
+<Card
+  expandable={false}
+  expanded={null}
+  initiallyExpanded={false}
+  style={
+    Object {
+      "margin": "1em 0 0 0",
+      "width": "300px",
+    }
+  }>
+  <CardMedia
+    overlay={
+      <CardTitle
+        title="Tester" />
+    }>
+    <img
+      alt=""
+      role="presentation"
+      src="http://www.test.image.com" />
   </CardMedia>
   <CardTitle
     subtitle="666666666"
@@ -72,6 +131,7 @@ exports[`Testing ContactCard component renders ContactCard omit phone using Snap
         title="Tester" />
     }>
     <img
+      alt=""
       role="presentation"
       src="http://www.test.image.com" />
   </CardMedia>
@@ -129,6 +189,7 @@ exports[`Testing ContactCard component renders ContactCard using Snapshots 1`] =
         title="Tester" />
     }>
     <img
+      alt=""
       role="presentation"
       src="http://www.test.image.com" />
   </CardMedia>

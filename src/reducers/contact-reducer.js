@@ -1,12 +1,13 @@
 import _ from 'lodash';
-import Immutable from 'immutable';
+import { Record, Map, fromJS } from 'immutable';
 import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, REQUEST_CONTACT_SUCCESS, UPDATE_CONTACT_ATTRIBUTE,
   VALIDATE_CONTACT, VALIDATE_CONTACT_ATTRIBUTE, RESET_CONTACT,
   } from '../constants/contact-actions-constants';
 import { SET_ERROR_MESSAGE } from '../constants/snackbar-actions-constants';
+import ContactModel from '../models/ContactModel';
 
-const requiredValidation =
-  (value) => value !== undefined && value !== null && (!_.isEmpty(value) || _.isNumber(value));
+const requiredValidation = value =>
+  value !== undefined && value !== null && (!_.isEmpty(value) || _.isNumber(value));
 
 const isEmail = (value) => {
   if (value) {
@@ -48,7 +49,6 @@ const validateAll = (rulesObject, contact) => {
         const error = applyValidator(ruleObject, value);
         if (error) {
           errors[name] = error;
-          return;
         }
       });
     } else {
@@ -68,19 +68,15 @@ const rulesObject = {
   imgUrl: [{ rule: isUrl, error: 'Invalid url' }],
 };
 
-export const initialState = new Immutable.Map({
+export const Contact = new Record({
   loading: false,
   isModified: false,
-  contact: new Immutable.Map({
-    email: '',
-    imgUrl: '',
-    name: '',
-    phoneNumber: '',
-  }),
-  errors: new Immutable.Map(),
+  contact: new ContactModel(),
+  errors: new Map(),
 });
 
-const contact = (state = initialState, action) => {
+
+const contact = (state = new Contact(), action) => {
   const { name, value } = action;
   let error;
   let errors;
@@ -92,14 +88,9 @@ const contact = (state = initialState, action) => {
       return state.set('loading', false);
     case (REQUEST_CONTACT_SUCCESS):
       return state
-        .set('contact', action.contact || new Immutable.Map({
-          imgUrl: '',
-          name: '',
-          phoneNumber: '',
-          email: '',
-        }))
+        .set('contact', action.contact || new ContactModel())
         .set('loading', false)
-        .set('errors', new Immutable.Map());
+        .set('errors', new Map());
     case (UPDATE_CONTACT_ATTRIBUTE):
       return state
         .set('isModified', true)
@@ -112,9 +103,9 @@ const contact = (state = initialState, action) => {
       return state.deleteIn(['errors', name]);
     case VALIDATE_CONTACT:
       errors = validateAll(rulesObject, state.get('contact').toJS());
-      return state.set('errors', new Immutable.Map(Immutable.fromJS(errors || {})));
+      return state.set('errors', new Map(fromJS(errors || {})));
     case RESET_CONTACT:
-      return initialState;
+      return new Contact();
     default:
       return state;
   }

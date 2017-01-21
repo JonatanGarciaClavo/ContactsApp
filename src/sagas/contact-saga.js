@@ -1,23 +1,23 @@
 import { take, call, put, select } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
-import Immutable from 'immutable';
 import { REQUEST_CONTACT, REQUEST_SAVE_CONTACT, TRANSTION_TO_EDIT_CONTACT }
   from '../constants/contact-actions-constants';
 import { contactSelector, contactListSelector } from './selectors';
 import ContactActions from '../actions/contact-actions';
 import SnackbarActions from '../actions/snackbar-actions';
 import ContactsServices from '../services/contacts-services';
+import ContactModel from '../models/ContactModel';
 
 export function* fetchContact(id) {
   try {
     const { contacts } = yield select(contactListSelector);
-    const contactFilteredById = contacts.filter((c) => c.get('id') === id).first();
+    const contactFilteredById = contacts.filter(c => c.get('id') === id).first();
     if (contactFilteredById) {
-      yield put(ContactActions.recieveContact(contactFilteredById));
+      yield put(ContactActions.recieveContact(new ContactModel(contactFilteredById)));
     } else if (id) {
       const contactDB = yield call(ContactsServices.get, id)
       yield put(ContactActions.recieveContact(
-        new Immutable.Map(Immutable.fromJS(contactDB))
+        new ContactModel(contactDB),
       ));
     } else {
       yield put(ContactActions.recieveContact());
@@ -39,7 +39,7 @@ export function* saveContact() {
     yield put(ContactActions.validateContact());
     const { errors, contact } = yield select(contactSelector);
     if (errors.isEmpty()) {
-      const save = contact.has('id') ? 'update' : 'create';
+      const save = contact.get('id') ? 'update' : 'create';
       yield call(ContactsServices[save], contact.toJS())
       yield call(browserHistory.push, '/list');
     } else {

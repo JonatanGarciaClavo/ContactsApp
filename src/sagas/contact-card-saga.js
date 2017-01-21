@@ -16,7 +16,7 @@ export function* fetchContactCard(id) {
     } else {
       const contactDB = yield call(ContactsServices.get, id)
       yield put(ContactCardActions.recieveContactCard(
-        new Immutable.Map(Immutable.fromJS(contactDB))
+        new Immutable.Map(Immutable.fromJS(contactDB)),
       ));
     }
   } catch (err) {

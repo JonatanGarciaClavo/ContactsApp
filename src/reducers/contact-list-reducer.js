@@ -1,17 +1,17 @@
-import Immutable from 'immutable';
+import { Record, List } from 'immutable';
 import { REQUEST_CONTACT_LIST, REQUEST_CONTACT_LIST_SUCCESS, CHANGE_LIST_MODE, RESET_CONTACT_LIST }
   from '../constants/contact-list-actions-constants';
 import { SET_ERROR_MESSAGE } from '../constants/snackbar-actions-constants';
 import { LIST_MODE } from '../constants/contact-list-mode-constants';
 
-export const initialState = new Immutable.Map({
+export const ContactList = new Record({
   loading: false,
-  contacts: new Immutable.List(),
+  contacts: new List(),
   orderBy: 'name',
   mode: LIST_MODE,
 });
 
-const contactList = (state = initialState, action) => {
+const contactList = (state = new ContactList(), action) => {
   switch (action.type) {
     case (REQUEST_CONTACT_LIST):
       return state.set('loading', true);
@@ -27,7 +27,7 @@ const contactList = (state = initialState, action) => {
       }
       return state.set('mode', action.mode || LIST_MODE);
     case (RESET_CONTACT_LIST):
-      return initialState;
+      return new ContactList();
     default:
       return state;
   }

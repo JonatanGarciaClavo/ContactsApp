@@ -5,16 +5,16 @@ This app it is only to teach people how to use Redux, Redux saga and Jest snapsh
 ### Install and Run the Dev Server (Linux/OSX)
 
 ```
-npm install
-npm run dev
+yarn install
+yarn run dev
 ```
 Then open http://localhost:3000
 
 ### Build and Run the Production Server (Linux/OSX)
 
 ```
-npm run build
-npm start
+yarn run build
+yarn start
 ```
 Then open http://localhost
 (Note the production port is set to 80 in package.json)
@@ -22,34 +22,34 @@ Then open http://localhost
 ### Run tests (Linux/OSX)
 
 ```
-npm test
+yarn test
 ```
 or
 ```
-npm test:watch
+yarn test:watch
 ```
 if you want to activate watch mode
 
 ### Run test coverage (Linux/OSX)
 
 ```
-npm test:coverage
+yarn test:coverage
 ```
 Then open ContactsApp/coverage/lcov-report/index.html if you want to see it more detailed than console report.
 
 ### Install and Run the Dev Server (Windows)
 
 ```
-npm install
-npm run dev-win
+yarn install
+yarn run dev-win
 ```
 Then open http://localhost:3000
 
 ### Build and Run the Production Server (Windows)
 
 ```
-npm run build-win
-npm run start-win
+yarn run build-win
+yarn run start-win
 ```
 Then open http://localhost
 (Note the production port is set to 80 in package.json)

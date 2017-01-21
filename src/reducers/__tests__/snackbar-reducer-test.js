@@ -1,5 +1,4 @@
-import snackbar from '../snackbar-reducer';
-import { initialState } from '../snackbar-reducer';
+import { initialState, default as snackbar } from '../snackbar-reducer';
 import { CLOSE_ERROR_MESSAGE, SET_ERROR_MESSAGE } from '../../constants/snackbar-actions-constants';
 
 describe('Test snackbar reducer', () => {

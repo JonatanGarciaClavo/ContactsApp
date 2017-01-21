@@ -15,7 +15,7 @@ export default {
           contacts.push(Object.assign({}, contact, { id }));
         });
         return resolve(contacts);
-      }, (err) => reject(err));
+      }, err => reject(err));
     });
   },
   get(id) {
@@ -25,7 +25,7 @@ export default {
         const contactDBValue = contactDB.val();
         contactDBValue.id = id;
         return resolve(contactDBValue);
-      }, (err) => reject(err));
+      }, err => reject(err));
     });
   },
   create(contact) {

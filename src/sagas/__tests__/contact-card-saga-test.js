@@ -7,7 +7,7 @@ import { REQUEST_CONTACT_CARD, REQUEST_DELETE_CONTACT_CARD, TRANSTION_TO_EDIT_CO
 import { requestContactCard, fetchContactCard, requestDeleteContactCard, fetchDeleteContactCard,
   requestTransitionToEditContactCard } from '../contact-card-saga';
 import { contactCardSelector } from '../selectors';
-import { initialState } from '../../reducers/contact-card-reducer';
+import { ContactCard } from '../../reducers/contact-card-reducer';
 import ContactCardActions from '../../actions/contact-card-actions';
 import SnackbarActions from '../../actions/snackbar-actions';
 import ContactsServices from '../../services/contacts-services';
@@ -49,7 +49,7 @@ describe('Testing fetchContactCard', () => {
     it('should select contactCard', result => {
       expect(result).toEqual(select(contactCardSelector));
       return {
-        contact: initialState,
+        contact: new ContactCard(),
       };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {
@@ -73,7 +73,7 @@ describe('Testing fetchContactCard', () => {
     it('should select contactCard', result => {
       expect(result).toEqual(select(contactCardSelector));
       return {
-        contact: initialState,
+        contact: new ContactCard(),
       };
     });
     it('should have called the mock API first, which we are going to specify the results of', result => {

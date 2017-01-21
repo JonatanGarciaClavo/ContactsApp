@@ -1,5 +1,7 @@
 import React from 'react';
 import { Card, CardMedia, CardTitle, CardActions, FlatButton } from 'material-ui';
+import { Map } from 'immutable';
+import _ from 'lodash';
 // https://imgur.com/mbZIBzc
 const ContactCard = ({ contact, onEditClick, onDeleteClick }) => {
   const { name, imgUrl, email, phoneNumber } = contact;
@@ -7,6 +9,7 @@ const ContactCard = ({ contact, onEditClick, onDeleteClick }) => {
     <Card style={{ width: '300px', margin: '1em 0 0 0' }}>
       <CardMedia overlay={<CardTitle title={name} />}>
         <img
+          alt=""
           role="presentation"
           src={imgUrl ||
             'http://i.imgur.com/mbZIBzc.png'}
@@ -25,8 +28,13 @@ const ContactCard = ({ contact, onEditClick, onDeleteClick }) => {
   );
 }
 
+ContactCard.defaultProps = {
+  onEditClick: _.noop,
+  onDeleteClick: _.noop,
+}
+
 ContactCard.propTypes = {
-  contact: React.PropTypes.object.isRequired,
+  contact: React.PropTypes.instanceOf(Map).isRequired,
   onEditClick: React.PropTypes.func,
   onDeleteClick: React.PropTypes.func,
 };

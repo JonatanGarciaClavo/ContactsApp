@@ -2,6 +2,7 @@ exports[`Test contact reducer handles REQUEST_CONTACT action 1`] = `
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -31,6 +32,7 @@ exports[`Test contact reducer handles REQUEST_SAVE_CONTACT action 1`] = `
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -45,6 +47,7 @@ exports[`Test contact reducer handles RESET_CONTACT action 1`] = `
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -59,6 +62,7 @@ exports[`Test contact reducer handles SET_ERROR_MESSAGE action 1`] = `
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -148,6 +152,7 @@ exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE email action 1`
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -162,6 +167,7 @@ exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE email action 2`
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -178,6 +184,7 @@ exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE email action 3`
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -194,6 +201,7 @@ exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE imgUrl action 1
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -208,6 +216,7 @@ exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE imgUrl action 2
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -224,6 +233,7 @@ exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE name action 1`]
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -238,6 +248,7 @@ exports[`Test contact reducer handles VALIDATE_CONTACT_ATTRIBUTE name action 2`]
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -254,6 +265,7 @@ exports[`Test contact reducer returns the initialState state on an undefined sta
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
@@ -268,6 +280,7 @@ exports[`Test contact reducer returns the same state on an unhandled action 1`] 
 Object {
   "contact": Object {
     "email": "",
+    "id": null,
     "imgUrl": "",
     "name": "",
     "phoneNumber": "",
